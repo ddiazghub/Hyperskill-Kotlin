@@ -1,0 +1,20 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    // write your code here
+
+    /* Do not change code below */
+    fun main() {
+        val a = readLine()!!.toInt()
+        println(getLastDigit(a))
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4589#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 16 Mar 2023 18:27:47 UTC"
+record: -1
+submission_language: kotlin

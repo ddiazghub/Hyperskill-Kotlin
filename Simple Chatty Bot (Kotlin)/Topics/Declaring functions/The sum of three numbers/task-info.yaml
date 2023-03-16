@@ -1,0 +1,15 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: "// write your function here\n\nfun main() {    \n    val a = readLine()!!.toInt()\n\
+    \    val b = readLine()!!.toInt()\n    val c = readLine()!!.toInt()\n\n    println(sum(a,\
+    \ b, c))\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4584#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 16 Mar 2023 18:19:01 UTC"
+record: -1
+submission_language: kotlin

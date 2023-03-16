@@ -1,0 +1,23 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    fun findYears(depo: Double): Int{
+        var deposit = depo
+        val interestRate = 1.071
+        val max = 700000
+        var years = 0
+        //
+        // implement the while loop here
+        //
+        return years
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/23012#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 16 Mar 2023 18:35:31 UTC"
+record: -1
+submission_language: kotlin
