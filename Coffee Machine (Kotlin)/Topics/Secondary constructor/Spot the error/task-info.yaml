@@ -1,0 +1,23 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: "Class properties are changed in the constructor, so they should be mutable\
+    \ (var instead of val)"
+- text: There is a name collision between secondary constructor parameters and property
+    names
+- text: The secondary constructor needs to call the default one
+- text: There is a type mismatch in the assignment operators inside the constructor
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/10748#comment
+status: Solved
+record: -1
+local_check: false
