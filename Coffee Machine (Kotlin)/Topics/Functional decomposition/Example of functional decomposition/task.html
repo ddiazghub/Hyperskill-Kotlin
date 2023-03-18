@@ -1,0 +1,105 @@
+<h2>Example of functional decomposition</h2>
+<p></p>
+<p>Take a look at the following examples:</p>
+<pre><code class="language-kotlin">1) 
+
+fun main() {
+    val number = readln().toInt()
+    if (number &gt; 0) {
+        println("Initial number: $number")
+        val newNumber = number - number * number
+        println("New number after calculations is $newNumber")
+    } else if (number &lt; 0) {
+        println("Initial number: $number")
+        val newNumber = number + number * number
+        println("New number after calculations is $newNumber")
+    } else {
+        println("Initial number: $number")
+        println("No calculations here")
+    }
+}</code></pre>
+<pre><code class="language-kotlin">2)
+
+class Customer
+
+fun enterDetails(credentials: String): Customer {
+    // something here
+}
+
+fun isNewCustomer(customer: Customer): Boolean {
+    // something here
+}
+
+fun createLoginAndPassword(login: String, password: String) {
+    // something here
+}
+
+fun registerMe() {
+    val customer: Customer = enterDetails()
+    if (isNewCustomer(customer)) {
+        createLoginAndPassword()
+    } else {
+        // something here
+    }
+}
+
+fun main() {
+    registerMe()
+}</code></pre>
+<pre><code class="language-kotlin">3)
+
+fun main() {
+    val number = readln().toInt()
+    while (number &gt; 0)
+    if (number % 3 == 0) {
+        println("Fizz")
+    } else if (number % 5 == 0) {
+        println("Buzz")
+    } else if (number % 3 != 0 &amp;&amp; number % 5 != 0) {
+        println("FizzBuzz")
+    }
+}</code></pre>
+<pre><code class="language-kotlin">4)
+
+fun actionIsCorrect(action: String): Boolean {
+    // something here
+}
+
+fun remainingValue() {
+    // something here
+}
+
+fun fillMl() {
+    // something here
+}
+
+fun buyCoffee() {
+    // something here
+}
+
+fun takeCoffee() {
+    // something here
+}
+
+fun main() {
+    val action = readln()
+    if (!actionIsCorrect(action)) {
+        // something here
+    } else {
+        when (action) {
+            "remaining" -&gt; {
+                remainingValue()
+            }
+            "fill" -&gt; {
+                fillMl()
+            }
+            "buy" -&gt; {
+                buyCoffee()
+            }
+            "take" -&gt; {
+                takeCoffee()
+            }
+        }
+    }
+}</code></pre>
+<p>Which ones are examples of functional decomposition?</p>

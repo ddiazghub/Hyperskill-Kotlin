@@ -1,0 +1,13 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: // write the BankAccount class here
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6243#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 18 Mar 2023 02:39:04 UTC"
+record: -1
+submission_language: kotlin

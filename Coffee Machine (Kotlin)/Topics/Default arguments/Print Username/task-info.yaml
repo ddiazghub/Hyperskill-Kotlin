@@ -1,0 +1,15 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    // complete this function
+    fun greetings(): String
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4707#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Fri, 17 Mar 2023 16:43:02 UTC"
+record: -1
+submission_language: kotlin

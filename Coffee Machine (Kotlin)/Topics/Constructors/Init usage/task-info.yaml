@@ -1,0 +1,20 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    fun main() {
+        val timerValue = readLine()!!.toInt()
+        val timer = ByteTimer(timerValue)
+        println(timer.time)
+    }
+
+    class ByteTimer(var time: Int) {}
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/7371#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 18 Mar 2023 02:34:05 UTC"
+record: -1
+submission_language: kotlin

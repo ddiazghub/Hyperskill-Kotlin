@@ -1,0 +1,17 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    The function must be named "main"
+    fun main() {
+        println("It works!") This statement prints a text
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4417#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 18 Mar 2023 03:45:39 UTC"
+record: -1
+submission_language: kotlin

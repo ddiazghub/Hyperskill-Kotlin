@@ -1,0 +1,53 @@
+type: edu
+files:
+- name: src/machine/Main.kt
+  visible: true
+  text: |
+    package machine
+
+    fun main() {
+        println("Hello, world!")
+    }
+  learner_created: false
+- name: test/CoffeeMachineTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.Arrays;
+    import java.util.List;
+
+    public class CoffeeMachineTest extends StageTest<String> {
+
+        @Override
+        public List<TestCase<String>> generate() {
+            return Arrays.asList(
+                new TestCase<String>()
+                    .setInput("")
+                    .setAttach("Starting to make a coffee\n" +
+                        "Grinding coffee beans\n" +
+                        "Boiling water\n" +
+                        "Mixing boiled water with crushed coffee beans\n" +
+                        "Pouring coffee into the cup\n" +
+                        "Pouring some milk into the cup\n" +
+                        "Coffee is ready!")
+            );
+        }
+
+        @Override
+        public CheckResult check(String reply, String clue) {
+            boolean isCorrect = reply.trim().equals(clue.trim());
+            return new CheckResult(isCorrect,
+                "You should make coffee exactly " +
+                    "like in the example");
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/5659#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 17 Mar 2023 02:39:23 UTC"
+record: 1

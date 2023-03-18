@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: If you want to reuse some pieces of code
+- text: If the program has many actions
+- text: If you don't need the partitioning of functions
+- text: If you want to test certain fragments of code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20631#comment
+status: Solved
+record: -1
+local_check: false
