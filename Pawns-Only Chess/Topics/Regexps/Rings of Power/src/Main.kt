@@ -1,0 +1,1 @@
+val regex = Regex("[0-2]?\\d rings?")
