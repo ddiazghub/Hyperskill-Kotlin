@@ -1,0 +1,59 @@
+type: edu
+files:
+- name: src/chucknorris/Main.kt
+  visible: true
+  text: |-
+    package chucknorris
+
+    fun main() {
+        println("Hello World!")
+    }
+  learner_created: false
+- name: test/ChuckNorrisTest.java
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+
+    public class ChuckNorrisTest extends StageTest {
+      Object[][] test_data = {
+              {"greetings!","g r e e t i n g s !"},
+              {"hello world!","h e l l o   w o r l d !"},
+              {"  ","   "},
+              {"h e l l o   w o r l d !","h   e   l   l   o       w   o   r   l   d   !"},
+              {"",""}
+      };
+
+      @DynamicTest(data = "test_data")
+      CheckResult test(String input, String result) {
+        TestedProgram pr = new TestedProgram();
+        String output = pr.start().strip().toLowerCase();
+        List<String> list = new ArrayList<>(Arrays.asList(output.split("\n")));
+        list.removeAll(Arrays.asList(""));
+
+        if(list.size()!=1 || !list.get(0).contains("input")){
+          return CheckResult.wrong("When the program just started, output should contain exactly 1 non-empty line, " +
+                  "containing \"input\" substring as it shown in the example, followed by an input");
+        }
+        output = pr.execute(input);
+        if(!output.contains(result)){
+          return CheckResult.wrong("When the user has entered a string, there should be a line with all characters of initial" +
+                  " string, separated by space. Note that space-characters should also be separated, as it shown in the example.");
+        }
+        return CheckResult.correct();
+      }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/23690#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 21 Mar 2023 13:27:15 UTC"
+record: 1

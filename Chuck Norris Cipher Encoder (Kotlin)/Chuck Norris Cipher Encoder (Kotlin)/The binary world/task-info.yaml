@@ -1,0 +1,87 @@
+type: edu
+files:
+- name: src/chucknorris/Main.kt
+  visible: true
+  text: |-
+    package chucknorris
+
+    fun main() {
+        println("Hello World!")
+    }
+  learner_created: false
+- name: test/ChuckNorrisTest.java
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+    import java.util.regex.Matcher;
+    import java.util.regex.Pattern;
+
+    public class ChuckNorrisTest extends StageTest {
+      Object[] test_data(){
+        String ascii = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+        List<String> list = new ArrayList<>(Arrays.asList(ascii.split("")));
+        list.addAll(Arrays.asList("greetings!",
+                "hello world!",
+                "",
+                ascii));
+        return list.toArray();
+      }
+
+      @DynamicTest(data = "test_data")
+      CheckResult test(String input) {
+        TestedProgram pr = new TestedProgram();
+        String output = pr.start().strip().toLowerCase();
+        List<String> list = new ArrayList<>(Arrays.asList(output.split("\n")));
+        list.removeAll(Arrays.asList(""));
+
+        if(list.size()!=1 || !list.get(0).contains("input")){
+          return CheckResult.wrong("When the program just started, output should contain exactly 1 non-empty line, " +
+                  "containing \"input\" substring as it shown in the example, followed by an input");
+        }
+        output = pr.execute(input);
+        list = new ArrayList<>(Arrays.asList(output.split("\n")));
+        list.removeAll(Arrays.asList(""));
+        if(list.size()!=1+input.length()){
+          return CheckResult.wrong("When the user has entered a string, there should be printed exactly n+1 " +
+                  "non-empty lines, where n is length of input string as it shown in the example");
+        }
+        if(!list.get(0).toLowerCase().contains("result")){
+          return CheckResult.wrong("When the user has entered a string, the first line of the output " +
+                  "should contain \"result\" substring");
+        }
+        Pattern pattern = Pattern.compile("(.) = ([01]{7})");
+        for (int i=0;i<input.length();i++){
+          Matcher m = pattern.matcher(list.get(i+1));
+          if(!m.matches()){
+            return CheckResult.wrong("Each string's character line should start with \"<char> = \" substring, " +
+                    "followed by 7-bit sequence, even if the first digits are zeros");
+          }
+          if(!m.group(1).equals(String.valueOf(input.charAt(i)))){
+            return CheckResult.wrong("String's character lines should be ordered the same way as in initial input string " +
+                    "as in example");
+          }
+          String result = Integer.toBinaryString(input.charAt(i));
+          String resultWithPadding = String.format("%7s", result).replaceAll(" ","0");
+          if(!m.group(2).equals(resultWithPadding)){
+            return CheckResult.wrong("Some of the printed 7-bit sequences not matching their characters: '" +
+                    input.charAt(i)+"' should be " + resultWithPadding +", not "+m.group(2));
+          }
+        }
+        return CheckResult.correct();
+      }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/23691#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 21 Mar 2023 13:46:21 UTC"
+record: 2

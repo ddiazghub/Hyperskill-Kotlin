@@ -1,31 +1,29 @@
 hyperskill_project:
-  id: 182
-  ide_files: https://stepik.org/media/attachments/lesson/531252/additional_files.json
+  id: 300
+  ide_files: https://stepik.org/media/attachments/lesson/823794/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Tue, 21 Mar 2023 13:20:21 UTC"
+update_date: "Tue, 21 Mar 2023 16:55:54 UTC"
 stages:
-- id: 922
-  step: 13174
+- id: 1686
+  step: 23690
   is_completed: true
-- id: 923
-  step: 13175
+- id: 1687
+  step: 23691
   is_completed: true
-- id: 924
-  step: 13176
+- id: 1688
+  step: 23692
   is_completed: true
-- id: 925
-  step: 13177
+- id: 1689
+  step: 23693
   is_completed: true
-- id: 926
-  step: 13178
+- id: 1690
+  step: 23694
   is_completed: true
 topics:
   0:
   - title: Units of information
     theory_id: 6865
-  - title: IDE
-    theory_id: 10996
   - title: Introduction to Kotlin
     theory_id: 4350
   - title: Basic literals
@@ -38,12 +36,6 @@ topics:
     theory_id: 17408
   - title: Data types
     theory_id: 4388
-  - title: Comments
-    theory_id: 4406
-  - title: Coding style conventions
-    theory_id: 4419
-  - title: Naming variables
-    theory_id: 4389
   - title: Standard output
     theory_id: 4425
   - title: Invoking functions
@@ -72,39 +64,39 @@ topics:
     theory_id: 4488
   - title: Relational operators
     theory_id: 4525
-  - title: Declaring functions
-    theory_id: 4580
-  - title: Objects
-    theory_id: 11233
-  - title: Equality
-    theory_id: 11236
-  - title: IntelliJ IDEA
-    theory_id: 3801
-  - title: IntelliJ IDEA basics
-    theory_id: 5819
-  - title: Navigation through code
-    theory_id: 5824
-  - title: Writing code with pleasure
-    theory_id: 5829
+  - title: If expression
+    theory_id: 4625
+  - title: Repeating blocks
+    theory_id: 4643
+  - title: Ranges
+    theory_id: 4633
+  - title: For loop and ranges
+    theory_id: 4652
   1:
   - title: Binary numbers
     theory_id: 5544
   - title: Hexadecimal numbers
     theory_id: 8788
-  - title: If expression
-    theory_id: 4625
-  - title: Repeating blocks
-    theory_id: 4643
+  - title: Converting from decimal to binary
+    theory_id: 5614
   - title: Unicode
     theory_id: 7899
+  2:
+  - title: While loops
+    theory_id: 4659
+  - title: When expression
+    theory_id: 4631
+  3:
+  - title: Converting from binary to decimal
+    theory_id: 5622
+  - title: Objects
+    theory_id: 11233
+  - title: Equality
+    theory_id: 11236
   - title: Characters
     theory_id: 4680
-  - title: Ranges
-    theory_id: 4633
   - title: Introduction to MutableList
     theory_id: 14879
-  - title: For loop and ranges
-    theory_id: 4652
   - title: Work with MutableLists
     theory_id: 14902
   - title: For loop and lists
@@ -115,42 +107,26 @@ topics:
     theory_id: 8535
   - title: Processing strings
     theory_id: 9027
-  - title: Regexps basics
-    theory_id: 7580
-  - title: Regexps
-    theory_id: 10721
-  - title: "Sets, ranges, and alternations"
-    theory_id: 14514
-  - title: Shorthands
-    theory_id: 14540
-  2:
-  - title: Multi-dimensional list
-    theory_id: 15127
-  3:
-  - title: While loops
-    theory_id: 4659
-  - title: When expression
-    theory_id: 4631
-  - title: Jumps and returns
-    theory_id: 6165
   4:
-  - title: Computer programming
-    theory_id: 8739
-  - title: Paradigms
-    theory_id: 15860
-  - title: Introduction to OOP
-    theory_id: 3614
-  - title: Declaring classes
-    theory_id: 6200
+  - title: Comments
+    theory_id: 4406
+  - title: Coding style conventions
+    theory_id: 4419
+  - title: Naming variables
+    theory_id: 4389
+  - title: Declaring functions
+    theory_id: 4580
+  - title: Errors in programs
+    theory_id: 11559
   - title: Functional decomposition
     theory_id: 12668
-  - title: Default arguments
-    theory_id: 4637
-  - title: Named arguments
-    theory_id: 4640
-  - title: Constructors
-    theory_id: 10740
-  - title: Member functions
-    theory_id: 6364
-  - title: Enum
-    theory_id: 6245
+  - title: What is an exception
+    theory_id: 7243
+  - title: Hierarchy of exceptions
+    theory_id: 13264
+  - title: Taming exceptions
+    theory_id: 7601
+  - title: The try-catch statement
+    theory_id: 10622
+  - title: The try-catch-finally statement
+    theory_id: 11809

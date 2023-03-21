@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: It's executed only if there is an exception in the try-block
+- text: "Without it, try-catch will not work"
+- text: Finally blocks can be omitted
+- text: It's executed in any case
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/11812#comment
+status: Solved
+record: -1
+local_check: false

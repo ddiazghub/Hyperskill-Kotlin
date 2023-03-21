@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: "The try block will be executed, but the message won't be printed"
+- text: The finally block will be executed
+- text: "The try block will be executed, and the message will be printed"
+- text: The catch block will be executed
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/21108#comment
+status: Solved
+record: -1
+custom_name: Will it be printed?
+local_check: false

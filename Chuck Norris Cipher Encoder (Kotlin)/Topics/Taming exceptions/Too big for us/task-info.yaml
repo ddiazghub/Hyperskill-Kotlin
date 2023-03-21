@@ -1,0 +1,14 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: "fun returnValue(): Int {\n    val value = readln().toInt()\n\n    // write\
+    \ your code here \n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/18772#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Tue, 21 Mar 2023 15:58:48 UTC"
+record: -1
+submission_language: kotlin

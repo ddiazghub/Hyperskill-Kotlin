@@ -1,0 +1,6 @@
+content:
+- Theory
+- IndexOutOfBoundsException
+- RuntimeException
+- What is Throwable
+- ArithmeticException

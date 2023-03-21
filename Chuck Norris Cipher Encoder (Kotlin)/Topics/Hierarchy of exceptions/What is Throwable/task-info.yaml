@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: Throwable is a supertype of RuntimeException
+- text: Throwable is a subtype of Error
+- text: Throwable is a supertype of Exception
+- text: Throwable has two equal subtypes
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/19683#comment
+status: Solved
+record: -1
+custom_name: What is Throwable?
+local_check: false

@@ -1,0 +1,16 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: "fun main() {\n    try {\n    // write your code here, do not touch the lines\
+    \ above\n\n    // do not touch the lines below    \n    } catch(e: RuntimeException)\
+    \ {\n        println(\"Well\")\n    } catch (e: Exception) {\n        println(\"\
+    Wrong\")\n    }\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/13269#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Tue, 21 Mar 2023 15:47:32 UTC"
+record: -1
+submission_language: kotlin

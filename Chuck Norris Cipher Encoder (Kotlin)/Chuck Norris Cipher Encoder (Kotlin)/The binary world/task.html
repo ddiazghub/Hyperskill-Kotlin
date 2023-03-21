@@ -1,0 +1,42 @@
+<h5 id="description">Description</h5>
+<p>In this stage, you'll learn how to convert each character of a string into a binary form. Any ASCII character has a size of 7 bits; in binary, the form is <code class="java">0</code> and <code class="java">1</code>. For example, the character <code class="java">A</code> has a decimal value of <code class="java">65</code>. The binary representation is <code class="java">1000001</code>. <code class="java">b</code> is <code class="java">98</code> in decimal or <code class="java">1100010</code> in binary. The space character is <code class="java">32</code> in decimal value or <code class="java">0100000</code> in binary.</p>
+<p>In this stage, you will learn to represent characters in binary form.</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, your program should:</p>
+<ol>
+<li>Read a string from a console. The input contains a single line.</li>
+<li>Print <code class="java">The result:</code> line, followed by each character of input on a separate line, formatted as <code class="java">&lt;char&gt; = &lt;binary value&gt;</code>.</li>
+</ol>
+<p>Note that the binary representation must be 7-bit, even if the first digits are zeros. The <code class="java">Integer.toBinaryString()</code> and <code class="java">String.format()</code> methods can help you with that.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong> Example 1: </strong></p>
+<pre><code class="language-no-highlight">Input string:
+&gt; One
+
+The result:
+O = 1001111
+n = 1101110
+e = 1100101</code></pre>
+<p> <strong>Example 2: </strong></p>
+<pre><code class="language-no-highlight">Input string:
+&gt; 123
+
+The result:
+1 = 0110001
+2 = 0110010
+3 = 0110011</code></pre>
+<p><strong> Example 3: </strong></p>
+<pre><code class="language-no-highlight">Input string:
+&gt; Who am I?
+
+The result:
+W = 1010111
+h = 1101000
+o = 1101111
+  = 0100000
+a = 1100001
+m = 1101101
+  = 0100000
+I = 1001001
+? = 0111111</code></pre>

@@ -1,0 +1,18 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    try {
+        throwException(data)
+    } catch (e: Exception) {
+        handleException(data)
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/11815#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Tue, 21 Mar 2023 16:10:54 UTC"
+record: -1
+submission_language: kotlin
