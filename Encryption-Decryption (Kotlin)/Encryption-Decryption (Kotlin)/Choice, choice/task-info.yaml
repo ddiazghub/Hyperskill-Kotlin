@@ -176,6 +176,15 @@ files:
 
     }
   learner_created: false
-feedback_link: https://hyperskill.org/projects/279/stages/1420/implement#comment
-status: Unchecked
+- name: output.txt
+  visible: true
+  text: |
+    111122223333
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/21971#comment
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Wed, 22 Mar 2023 21:10:15 UTC"
 record: -1

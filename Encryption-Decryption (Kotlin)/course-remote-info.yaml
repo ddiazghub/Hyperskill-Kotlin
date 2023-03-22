@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/775971/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Thu, 01 Jan 1970 00:00:00 UTC"
+update_date: "Wed, 22 Mar 2023 19:02:04 UTC"
 stages:
 - id: 1415
   step: 21966
@@ -16,15 +16,17 @@ stages:
   is_completed: true
 - id: 1418
   step: 21969
-  is_completed: false
+  is_completed: true
 - id: 1419
   step: 21970
-  is_completed: false
+  is_completed: true
 - id: 1420
   step: 21971
-  is_completed: false
+  is_completed: true
 topics:
   0:
+  - title: Reading data with a readln
+    theory_id: 11224
   - title: Binary numbers
     theory_id: 5544
   - title: Hexadecimal numbers
@@ -53,8 +55,6 @@ topics:
     theory_id: 4455
   - title: Type conversion
     theory_id: 4672
-  - title: Reading data with a readln
-    theory_id: 11224
   - title: String basics
     theory_id: 12553
   - title: String templates

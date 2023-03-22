@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: numbers2.contentEquals(numbers3)
+- text: numbers1.contentEquals(numbers2)
+- text: numbers1.contentEquals(numbers1)
+- text: numbers4.contentEquals(numbers2)
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4569#comment
+status: Solved
+record: -1
+local_check: false

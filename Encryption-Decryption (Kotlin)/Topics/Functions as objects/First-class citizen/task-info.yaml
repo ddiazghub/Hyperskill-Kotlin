@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: Doesn't depend on its name
+- text: Can be stored as a variable
+- text: Can be returned from another function
+- text: Can be received as an argument of another function
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/5992#comment
+status: Solved
+record: -1
+local_check: false
