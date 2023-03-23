@@ -611,6 +611,10 @@ files:
         }
     }
   learner_created: false
-feedback_link: https://hyperskill.org/projects/138/stages/739/implement#comment
-status: Unchecked
+feedback_link: https://hyperskill.org/learn/step/11368#comment
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Thu, 23 Mar 2023 00:53:02 UTC"
 record: -1
