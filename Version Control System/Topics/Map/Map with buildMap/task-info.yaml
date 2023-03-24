@@ -1,0 +1,16 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    val map = buildMap<String, String> {
+
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20628#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 23 Mar 2023 01:25:38 UTC"
+record: -1
+submission_language: kotlin

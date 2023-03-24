@@ -1,0 +1,1 @@
+fun stringToMap(vararg args: String): Map<String, Int> = args.associateWith { it.length }

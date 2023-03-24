@@ -1,0 +1,3 @@
+vcs-test/test.txt
+vcs-test/file2.txt
+vcs-test/testDir
