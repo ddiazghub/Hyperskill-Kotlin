@@ -1,0 +1,20 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    import java.math.BigDecimal
+    import java.math.RoundingMode
+
+    fun main() {
+        // write your code here
+
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/12541#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 25 Mar 2023 15:17:14 UTC"
+record: -1
+submission_language: kotlin
