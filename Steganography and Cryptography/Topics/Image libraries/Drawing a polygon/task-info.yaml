@@ -1,0 +1,19 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    import java.awt.Color
+    import java.awt.image.BufferedImage
+
+    fun drawPolygon(): BufferedImage {
+      // Add your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/21738#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 26 Mar 2023 20:01:03 UTC"
+record: -1
+submission_language: kotlin
