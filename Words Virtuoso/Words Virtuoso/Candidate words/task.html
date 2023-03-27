@@ -1,0 +1,31 @@
+<h5 id="description">Description</h5>
+<p>By inspecting the <em>words.txt </em>file provided in the previous stage, you noticed that most words are not very common. A file like this is vital for any word guessing program to recognize actual English words. What if the secret word is chosen from these words? It may frustrate the players. No one likes a word game where words are extra rare.</p>
+<p>The solution to this problem is to keep another list with common English words. The secret word will be chosen from this list. These words are candidates for the secret word. The game's difficulty level can be defined by the words included in this list.</p>
+<p>In this stage, your program will read <strong>two text files</strong>. Their filenames should be passed as arguments to the program. The first argument should be the file's filename with the completed list of all five-letter English words; the second argument should be the file's filename with the candidate words.</p>
+<p>For testing purposes, you can use the <a href="https://stepik.org/media/attachments/lesson/720509/candidates.txt" rel="noopener noreferrer nofollow" target="_blank">candidates.txt</a> file, which contains many common English words. The words in this file are a subset of the words included in the words.txt file.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Check the number of the passed arguments. If it isn't equal to two, then print the message <code class="java">Error: Wrong number of arguments.</code> and exit;</li>
+<li>The first argument is the filename of the text file containing all words. If this file doesn't exist, print the message <code class="java">Error: The words file &lt;All words filename&gt; doesn't exist.</code> and exit;</li>
+<li>The second argument is the filename of the text file containing the candidate words. If this file doesn't exist, print the message <code class="java">Error: The candidate words file &lt;Candidates filename&gt; doesn't exist.</code> and exit;</li>
+<li>Check the file containing all words for invalid words. If present, print <code class="java">Error: &lt;Number of invalid words&gt; invalid words were found in the &lt;All words filename&gt; file.</code> and exit;</li>
+<li>Check the file containing the candidate words for invalid words. If present, print <code class="java">Error: &lt;Number of invalid words&gt; invalid words were found in the &lt;Candidates filename&gt; file.</code> and exit;</li>
+<li>Check whether each candidate word is included in the file with all words. If any candidate words don't comply with that, print <code class="java">Error: &lt;Number of candidates not included&gt; candidate words are not included in the &lt;All words filename&gt; file.</code> and exit;</li>
+<li>If everything is fine, print the game title <code class="java">Words Virtuoso</code> and exit.</li>
+</ul>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>normal execution with arguments </em><code class="java">words.txt candidates.txt</code></p>
+<pre><code class="language-no-highlight">Words Virtuoso</code></pre>
+<p><strong>Example 2:</strong> <em>the number of arguments is not two</em></p>
+<pre><code class="language-no-highlight">Error: Wrong number of arguments.</code></pre>
+<p><strong>Example 3:</strong> <em>the first argument filename doesn't exist</em></p>
+<pre><code class="language-no-highlight">Error: The words file words.txt doesn't exist.</code></pre>
+<p><strong>Example 4:</strong> <em>the second argument filename doesn't exist</em></p>
+<pre><code class="language-no-highlight">Error: The candidate words file candidates.txt doesn't exist.</code></pre>
+<p><strong>Example 5:</strong> <em>invalid words in the words file</em></p>
+<pre><code class="language-no-highlight">Error: 5 invalid words were found in the words.txt file.</code></pre>
+<p><strong>Example 6:</strong> <em>invalid words in the candidates file</em></p>
+<pre><code class="language-no-highlight">Error: 3 invalid words were found in the candidates.txt file.</code></pre>
+<p><strong>Example 7:</strong> <em>candidate words are not in all words list</em></p>
+<pre><code class="language-no-highlight">Error: 2 candidate words are not included in the words.txt file.</code></pre>

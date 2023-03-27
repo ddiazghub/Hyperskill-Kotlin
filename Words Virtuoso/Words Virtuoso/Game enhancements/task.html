@@ -1,0 +1,126 @@
+<h5 id="description">Description</h5>
+<p>The core game is ready, but the final touches remain.</p>
+<p>Let's add a dab of challenge to the game. Commend the users when they are successful by considering two indicators. The first is the <strong>number of turns</strong> (how many inputs) until the player finds the solution (including the erroneous input). The second is the time the player took to find the solution. That is, from the moment the first question is printed to the moment when the success message is printed.</p>
+<p>You can use the <a href="https://www.baeldung.com/kotlin/measure-elapsed-time" rel="noopener noreferrer nofollow" target="_blank">Measuring Elapsed Time in Kotlin</a> tutorial to measure the time. The simplest solution is to use <code class="language-kotlin">System.currentTimeMillis()</code> to measure duration in <strong>milliseconds</strong> as in the following example:</p>
+<pre><code class="language-kotlin">var start = System.currentTimeMillis()
+// Code to measure the execution time
+var end = System.currentTimeMillis()
+val duration = end - start  // Milliseconds as a Long</code></pre>
+<p>Also, print the clue strings from the previous tries after each valid input in the order they occurred (see Examples 1 and 2).</p>
+<p>The player should also have the wrong characters from all the previous tries at their disposal. Print them in alphabetical order, without spaces or anything else between them, in uppercase. This way, the player will have all the available information gathered together (see Examples 1 and 2).</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>If players input an invalid word, print an error message and ask for another input;</li>
+<li>If players find the secret word on the first try, print the word in upper case, the line <code class="language-kotlin">Amazing luck! The solution was found at once.</code> and exit (see Example 3).</li>
+<li>Otherwise, print the clue strings with the valid input. They should appear in the order of the input (the first one on top and the last at the bottom). Then print all the wrong characters from all the tries in alphabetical order, upper case, without any separators in between;</li>
+<li>When the user guesses the word (on the 2nd+ attempt), print all the clue strings (but not the wrong characters), <code class="language-kotlin">The solution was found after &lt;turns&gt; tries in &lt;time lapsed&gt; seconds.</code>, and exit, where <code class="language-kotlin">&lt;turns&gt;</code> is how many times the player input words (including wrong input); <code class="language-kotlin">&lt;time lapsed&gt;</code> is the time in <strong>seconds</strong>.</li>
+</ul>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="language-kotlin">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>normal execution</em></p>
+<pre><code class="language-no-highlight">Words Virtuoso
+
+Input a 5-letter word:
+&gt; train
+
+tr___
+
+AIN
+
+Input a 5-letter word:
+&gt; scope
+
+tr___
+S_O__
+
+ACEINP
+
+Input a 5-letter word:
+&gt; score
+
+tr___
+S_O__
+S_OR_
+
+ACEINP
+
+Input a 5-letter word:
+&gt; storm
+
+tr___
+S_O__
+S_OR_
+STORM
+
+Correct!
+The solution was found after 4 tries in 54 seconds.</code></pre>
+<p><strong>Example 2:</strong> <em>normal execution</em> </p>
+<pre><code class="language-no-highlight">Words Virtuoso
+
+Input a 5-letter word:
+&gt; smile
+
+_____
+
+EILMS
+
+Input a 5-letter word:
+&gt; speak
+
+_____
+___a_
+
+EIKLMPS
+
+Input a 5-letter word:
+&gt; basic
+
+_____
+___a_
+Ba___
+
+CEIKLMPS
+
+Input a 5-letter word:
+&gt; begin
+
+_____
+___a_
+Ba___
+B___n
+
+CEGIKLMPS
+
+Input a 5-letter word:
+&gt; brain
+
+_____
+___a_
+Ba___
+B___n
+BRA_n
+
+CEGIKLMPS
+
+Input a 5-letter word:
+&gt; brand
+
+_____
+___a_
+Ba___
+B___n
+BRA_n
+BRAND
+
+Correct!
+The solution was found after 7 tries in 108 seconds.</code></pre>
+<p><strong>Example 3:</strong> <em>secret word guessed on the first try</em></p>
+<pre><code class="language-no-highlight">Words Virtuoso
+
+Input a 5-letter word:
+swift
+
+SWIFT
+
+Correct!
+Amazing luck! The solution was found at once.</code></pre>

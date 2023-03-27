@@ -1,0 +1,234 @@
+type: edu
+files:
+- name: src/wordsvirtuoso/Main.kt
+  visible: true
+  text: |
+    package wordsvirtuoso
+
+    fun main() {
+        println("Hello World!")
+    }
+  learner_created: false
+- name: test/WordsVirtuosoTest.kt
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.dynamic.DynamicTest
+    import org.hyperskill.hstest.stage.StageTest
+    import org.hyperskill.hstest.testcase.CheckResult
+    import org.hyperskill.hstest.testing.TestedProgram
+
+    class WordsVirtuosoTest : StageTest<Any>() {
+        private val wordFiles = mapOf(
+                "somewords.txt" to "stove\nKILOS\nalong\nkites\nartis\nthorn\nflags\njonty\nglift\ninvar" +
+                        "\nsteal\nburnt\nrains\nvelar\nafter\ncives\ntrove\ndebag\npaiks\nyoung\nshaft" +
+                        "\nbinks\nplows\nchamp\nsixth\nsynod\nroids\nanigh\nforts\natopy\ntired\nskite",
+                "wrongwords.txt" to "stove\nkilos\nalong\nkites\nartis\nthorn\nflags\njonty\nglift\ninvar" +
+                        "\nand\ncontain\nhello\nΔrash\nedt#r\n1nums\nwo rd",
+                "somecandidates.txt" to "STOVE\nkilos\nalong\nkites\nthorn\nflags\nsteal\nburnt\nrains\nafter" +
+                        "\nyoung\nshaft\nsixth\ntired",
+                "wrongcandidates.txt" to "stove\nkilos\nalong\nkites\nthorn\nflags\nsteal\nburnt\nrains\nafter" +
+                        "\nand\ncontain\nhello\nΔrash\nedt#r\n1nums\nwo rd\n12345\nPizza",
+                "addcandidates.txt" to "STOVE\nkilos\nalong\nkites\nthorn\nflags\nsteal\nburnt\nrains\nafter" +
+                        "\nyoung\nshaft\nsixth\ntired\neight\ncharm\nmetro"
+        )
+
+        @DynamicTest(order = 1)
+        fun wrongArgumentsTest(): CheckResult {
+            val argsList = listOf(
+                    arrayOf(""),
+                    arrayOf("words.txt"),
+                    arrayOf("words.txt", "candidates.txt", "other.txt")
+            )
+            for (args in argsList) {
+                val co = CheckOutput()
+                co.setArguments(*args)
+                if (!co.start("Error: Wrong number of arguments."))
+                    return CheckResult(false, "Your output should contain \"Error: Wrong number of arguments.\"")
+                if (!co.programIsFinished())
+                    return CheckResult(false, "The application didn't exit.")
+            }
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 2, files = "wordFiles")
+        fun noExistFilesTest(): CheckResult {
+
+            var co = CheckOutput()
+            co.setArguments("noexist.txt", "candidates.txt")
+            if (!co.start("Error: The words file noexist.txt doesn't exist."))
+                return CheckResult(false,
+                        "Your output should contain \"The words file noexist.txt doesn't exist.\"")
+            if (!co.programIsFinished())
+                return CheckResult(false, "The application didn't exit.")
+            co = CheckOutput()
+            co.setArguments("somewords.txt", "noexist.txt")
+            if (!co.start("Error: The candidate words file noexist.txt doesn't exist."))
+                return CheckResult(false,
+                        "Your output should contain \"Error: The candidate words file noexist.txt doesn't exist.\"")
+            if (!co.programIsFinished())
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 3, files = "wordFiles")
+        fun invalidWordsTest(): CheckResult {
+            val co = CheckOutput()
+            co.setArguments("wrongwords.txt", "somecandidates.txt")
+            if (!co.start("Error: 7 invalid words were found in the wrongWords.txt file."))
+                return CheckResult(false,
+                        "Wrong error message after input of a words file with invalid words.")
+            if (!co.programIsFinished())
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 4, files = "wordFiles")
+        fun invalidCandidatesTest(): CheckResult {
+            val co = CheckOutput()
+            co.setArguments("somewords.txt", "wrongcandidates.txt")
+            if (!co.start("Error: 9 invalid words were found in the wrongcandidates.txt file."))
+                return CheckResult(false,
+                        "Wrong error message after input of a candidate words file with invalid words.")
+            if (!co.programIsFinished())
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 5, files = "wordFiles")
+        fun additionalCandidatesTest(): CheckResult {
+            val co = CheckOutput()
+            co.setArguments("somewords.txt", "addcandidates.txt")
+            if (!co.start("Error: 3 candidate words are not included in the somewords.txt file."))
+                return CheckResult(false,
+                        "Wrong error message after input of a candidate words file with additional words.")
+            if (!co.programIsFinished())
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 6, files = "wordFiles")
+        fun normalRunTest(): CheckResult {
+            val co = CheckOutput()
+            co.setArguments("somewords.txt", "somecandidates.txt")
+            if (!co.start("Words Virtuoso"))
+                return CheckResult(false, "Your output should contain \"Words Virtuoso\"")
+            if (!co.programIsFinished())
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+    }
+
+    class CheckOutput {
+        private var main: TestedProgram = TestedProgram()
+        var position = 0
+        private var caseInsensitive = true
+        private var trimOutput = true
+        private val arguments= mutableListOf<String>()
+        private var isStarted = false
+        private var lastOutput = ""
+
+        private fun checkOutput(outputString: String, vararg checkStr: String): Boolean {
+            var searchPosition = position
+            for (cStr in checkStr) {
+                val str = if (caseInsensitive) cStr.lowercase() else cStr
+                val findPosition = outputString.indexOf(str, searchPosition)
+                if (findPosition == -1) return false
+                if ( outputString.substring(searchPosition until findPosition).isNotBlank() ) return false
+                searchPosition = findPosition + str.length
+            }
+            position = searchPosition
+            return true
+        }
+
+        fun start(vararg checkStr: String): Boolean {
+            return if (!isStarted) {
+                var outputString = main.start(*arguments.toTypedArray())
+                lastOutput = outputString
+                if (trimOutput) outputString = outputString.trim()
+                if (caseInsensitive) outputString = outputString.lowercase()
+                isStarted = true
+                checkOutput(outputString, *checkStr)
+            } else false
+        }
+
+        fun stop() {
+            main.stop()
+        }
+
+        fun input(input: String, vararg checkStr: String): Boolean {
+            if (main.isFinished) return false
+            var outputString = main.execute(input)
+            lastOutput = outputString
+            if (trimOutput) outputString = outputString.trim()
+            if (caseInsensitive) outputString = outputString.lowercase()
+            position = 0
+            return checkOutput(outputString, *checkStr)
+        }
+
+        fun inputNext(vararg checkStr: String): Boolean {
+            var outputString = lastOutput
+            if (trimOutput) outputString = outputString.trim()
+            if (caseInsensitive) outputString = outputString.lowercase()
+            return checkOutput(outputString, *checkStr)
+        }
+
+        fun getNextOutput(input: String): String {
+            if (main.isFinished) return ""
+            val outputString = main.execute(input)
+            lastOutput = outputString
+            position = 0
+            return  outputString
+        }
+
+        fun getLastOutput(): String { return lastOutput }
+        fun programIsFinished(): Boolean  = main.isFinished
+        fun setArguments(vararg args: String) { arguments.addAll(args.toMutableList()) }
+        fun setCaseSensitivity(caseInsensitive: Boolean) { this.caseInsensitive = caseInsensitive }
+        fun setOutputTrim(trimOutput: Boolean) { this.trimOutput = trimOutput}
+    }
+  learner_created: false
+- name: src/wordsvirtuoso/Dictionary.kt
+  visible: true
+  text: |-
+    package wordsvirtuoso
+
+    import java.nio.file.Path
+    import kotlin.io.path.Path
+    import kotlin.io.path.useLines
+
+    fun Path.lineSequence(): Sequence<String> = sequence { this@lineSequence.useLines { yieldAll(it) } }
+
+    class Dictionary(filepath: String) {
+        val words: Set<String>
+        val invalid: Int
+
+        init {
+            val (valid, invalid) = Path(filepath)
+                .lineSequence()
+                .partition(::isValid)
+
+            words = valid.toSet()
+            this.invalid = invalid.size
+        }
+
+        companion object {
+            val REGEX = Regex("[a-zA-Z]{5}")
+            fun isValid(string: String): Boolean = REGEX.matches(string) && string.toSet().size == 5
+        }
+    }
+  learner_created: true
+- name: src/wordsvirtuoso/VirtuosoException.kt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/290/stages/1513/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 27 Mar 2023 16:41:47 UTC"
+record: 3

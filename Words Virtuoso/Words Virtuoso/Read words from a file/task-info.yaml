@@ -1,0 +1,161 @@
+type: edu
+files:
+- name: src/wordsvirtuoso/Main.kt
+  visible: true
+  text: |
+    package wordsvirtuoso
+
+    fun main() {
+        println("Hello World!")
+    }
+  learner_created: false
+- name: test/WordsVirtuosoTest.kt
+  visible: false
+  text: |-
+    import org.hyperskill.hstest.dynamic.DynamicTest
+    import org.hyperskill.hstest.stage.StageTest
+    import org.hyperskill.hstest.testcase.CheckResult
+    import org.hyperskill.hstest.testing.TestedProgram
+
+    class WordsVirtuosoTest : StageTest<Any>() {
+        private val correctWordFile = mapOf(
+                "words.txt" to "stove\nkilos\nWISER\nInTrO\nGyruS\nalong\npedal"
+        )
+        private val invalidWordsFiles = mapOf(
+                "invalidwords1.txt" to "kilos\nwords\nINTRO\nexit\nand\ncontain",
+                "invalidwords2.txt" to "words\nhello\nPIZZA",
+                "invalidwords3.txt" to "words\ntrain\nήλιος\nΔrash\nedt#r\n1nums\nwo rd",
+        )
+        private val numOfInvalidWords = mapOf(
+                "invalidwords1.txt" to 3,
+                "invalidwords2.txt" to 2,
+                "invalidwords3.txt" to 5
+        )
+
+        @DynamicTest(order = 1)
+        fun missingFileTest(): CheckResult {
+            val co = CheckOutput()
+            if ( !co.start("Input the words file:") )
+                return CheckResult(false, "Your output should contain \"Input the words file:\"")
+            if (!co.input("noexist.txt", "Error: The words file noexist.txt doesn't exist."))
+                return CheckResult(false,
+                        "Your output should contain \"Error: The words file noexist.txt doesn't exist.\"")
+            if (!co.programIsFinished() )
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 2, files = "correctWordFile")
+        fun allCorrectWordsTest(): CheckResult {
+            val co = CheckOutput()
+            if ( !co.start("Input the words file:") )
+                return CheckResult(false, "Your output should contain \"Input the words file:\"")
+            if (!co.input(correctWordFile.keys.first(), "All words are valid!"))
+                return CheckResult(false,
+                        "Wrong message for file containing only valid words.")
+            if (!co.programIsFinished() )
+                return CheckResult(false, "The application didn't exit.")
+
+            return CheckResult.correct()
+        }
+
+        @DynamicTest(order = 3, files = "invalidWordsFiles")
+        fun invalidWordsTest(): CheckResult {
+            for (filename in invalidWordsFiles.keys) {
+                val co = CheckOutput()
+                if (!co.start("Input the words file:"))
+                    return CheckResult(false, "Your output should contain \"Input the words file:\"")
+                if (!co.input(filename,
+                                "Warning: ${numOfInvalidWords[filename]} invalid words were found in the $filename file."))
+                    return CheckResult(
+                            false,
+                            "Wrong message for file containing invalid words."
+                    )
+                if (!co.programIsFinished())
+                    return CheckResult(false, "The application didn't exit.")
+            }
+
+            return CheckResult.correct()
+        }
+
+    }
+
+    class CheckOutput {
+        private var main: TestedProgram = TestedProgram()
+        var position = 0
+        private var caseInsensitive = true
+        private var trimOutput = true
+        private val arguments= mutableListOf<String>()
+        private var isStarted = false
+        private var lastOutput = ""
+
+        private fun checkOutput(outputString: String, vararg checkStr: String): Boolean {
+            var searchPosition = position
+            for (cStr in checkStr) {
+                val str = if (caseInsensitive) cStr.lowercase() else cStr
+                val findPosition = outputString.indexOf(str, searchPosition)
+                if (findPosition == -1) return false
+                if ( outputString.substring(searchPosition until findPosition).isNotBlank() ) return false
+                searchPosition = findPosition + str.length
+            }
+            position = searchPosition
+            return true
+        }
+
+        fun start(vararg checkStr: String): Boolean {
+            return if (!isStarted) {
+                var outputString = main.start(*arguments.toTypedArray())
+                lastOutput = outputString
+                if (trimOutput) outputString = outputString.trim()
+                if (caseInsensitive) outputString = outputString.lowercase()
+                isStarted = true
+                checkOutput(outputString, *checkStr)
+            } else false
+        }
+
+        fun stop() {
+            main.stop()
+        }
+
+        fun input(input: String, vararg checkStr: String): Boolean {
+            if (main.isFinished) return false
+            var outputString = main.execute(input)
+            lastOutput = outputString
+            if (trimOutput) outputString = outputString.trim()
+            if (caseInsensitive) outputString = outputString.lowercase()
+            position = 0
+            return checkOutput(outputString, *checkStr)
+        }
+
+        fun inputNext(vararg checkStr: String): Boolean {
+            var outputString = lastOutput
+            if (trimOutput) outputString = outputString.trim()
+            if (caseInsensitive) outputString = outputString.lowercase()
+            return checkOutput(outputString, *checkStr)
+        }
+
+        fun getNextOutput(input: String): String {
+            if (main.isFinished) return ""
+            val outputString = main.execute(input)
+            lastOutput = outputString
+            position = 0
+            return  outputString
+        }
+
+        fun getLastOutput(): String { return lastOutput }
+        fun programIsFinished(): Boolean  = main.isFinished
+        fun setArguments(vararg args: String) { arguments.addAll(args.toMutableList()) }
+        fun setCaseSensitivity(caseInsensitive: Boolean) { this.caseInsensitive = caseInsensitive }
+        fun setOutputTrim(trimOutput: Boolean) { this.trimOutput = trimOutput}
+    }
+  learner_created: false
+- name: src/wordsvirtuoso/Dictionary.kt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/290/stages/1512/implement#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 27 Mar 2023 16:08:48 UTC"
+record: 2

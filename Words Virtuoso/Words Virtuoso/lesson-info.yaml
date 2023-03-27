@@ -1,0 +1,9 @@
+type: framework
+content:
+- Validate strings
+- Read words from a file
+- Candidate words
+- Play the game
+- Game enhancements
+- Colors
+current_task: 5
