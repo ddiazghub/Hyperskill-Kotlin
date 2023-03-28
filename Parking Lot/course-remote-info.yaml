@@ -7,19 +7,19 @@ update_date: "Thu, 01 Jan 1970 00:00:00 UTC"
 stages:
 - id: 416
   step: 6597
-  is_completed: false
+  is_completed: true
 - id: 417
   step: 6598
-  is_completed: false
+  is_completed: true
 - id: 418
   step: 6599
-  is_completed: false
+  is_completed: true
 - id: 419
   step: 6600
-  is_completed: false
+  is_completed: true
 - id: 420
   step: 6601
-  is_completed: false
+  is_completed: true
 topics:
   0:
   - title: Units of information

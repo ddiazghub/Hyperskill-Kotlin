@@ -165,6 +165,70 @@ files:
     }
 
   learner_created: false
+- name: src/parking/Car.kt
+  visible: true
+  text: |-
+    package parking
+
+    class Car(val plate: String, color: String) {
+        val color = color.lowercase().replaceFirstChar { it.uppercaseChar() }
+
+        init {
+            if (!LP_REGEX.matches(plate))
+                throw ParkingLotException.InvalidLicensePlate(plate)
+        }
+
+        companion object {
+            val LP_REGEX = Regex("\\S+")
+        }
+    }
+  learner_created: true
+- name: src/parking/ParkingLotException.kt
+  visible: true
+  text: |-
+    package parking
+
+    sealed class ParkingLotException(message: String) : RuntimeException(message) {
+        class InvalidLicensePlate(plate: String) : ParkingLotException("Invalid license plate: $plate")
+        class NoCarInSpot(spot: Int) : ParkingLotException("There is no car in spot $spot.")
+        object Full : ParkingLotException("Sorry, the parking lot is full.")
+    }
+  learner_created: true
+- name: src/parking/ParkingLot.kt
+  visible: true
+  text: |-
+    package parking
+
+    import java.lang.Integer.min
+
+    class ParkingLot(val size: Int) {
+        val spots: Array<Car?> = Array(size) { null }
+        var firstFree: Int = 0
+
+        fun park(car: Car): Int {
+            if (firstFree == size)
+                throw ParkingLotException.Full
+
+            spots[firstFree] = car
+            val spot = firstFree + 1
+
+            do firstFree++
+            while (firstFree < spots.size && spots[firstFree] != null)
+
+            return spot
+        }
+
+        fun leave(spotNumber: Int) {
+            val spot = spotNumber - 1
+            spots[spot] ?: throw ParkingLotException.NoCarInSpot(spotNumber)
+            spots[spot] = null
+            firstFree = min(firstFree, spot)
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/75/stages/419/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 28 Mar 2023 17:59:58 UTC"
+record: 4
