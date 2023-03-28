@@ -1,0 +1,20 @@
+<h2>Generics in work</h2>
+<p></p>
+<p>Take a look at the code below:</p>
+<pre><code class="language-kotlin">fun main() {
+    val list1 = listOf("apple", "banana", "orange")
+    val list2 = listOf("banana", "orange", "grapefruit", "apple")
+
+    val allElementsInList = allElementsInList(list1, list2)
+    println(allElementsInList)
+}
+
+fun &lt;T&gt; allElementsInList(list1: List&lt;T&gt;, list2: List&lt;T&gt;): Boolean {
+    for (element in list1) {
+        if (!list2.contains(element as? T)) {
+            return false
+        }
+    }
+    return true
+}</code></pre>
+<p>What is the result of the program's work? </p>
