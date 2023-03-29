@@ -1,0 +1,25 @@
+<p></p><h5 id="description">Description</h5><p><strong>Watermarking</strong> is a popular method to claim ownership of an image. It is the process of superimposing a logo or text on an image file. In this project, you will learn to apply watermarks of 24-bit or 32-bit color images with logos.</p><p>Before we start blending two images, you need to know how to get the image properties. Images can be accessed in a <code class="java">BufferedImage</code> instance with the use of the <code class="java">ImageIO</code> class. The image properties can be consequently obtained by using that particular instance.</p><p>If <code class="java">image</code> is a <code class="java">BufferedImage</code> instance, then the following properties can be acquired:</p><ul><li><p>Image height with <code class="java">image.height</code> in pixels;</p></li><li><p>Image width with <code class="java">image.width</code> in pixels;</p></li><li><p>The number of image components (can be colors or the alpha channel) with <code class="java">image.colorModel.numComponents</code>;</p></li><li><p>The number of image colors with <code class="java">image.colorModel.numColorComponents</code>;</p></li><li><p>The number of bits per pixel with <code class="java">image.colorModel.pixelSize</code>;</p></li><li><p>Image transparency setting with <code class="java">image.transparency</code>.</p></li></ul><p>The transparency property (<code class="java">image.transparency</code>) can be either <code class="java">Transparency.OPAQUE</code>, <code class="java">Transparency.BITMASK</code> or <code class="java">Transparency.TRANSLUCENT</code> (integers <code class="java">1</code> to <code class="java">3</code> respectively). Field descriptions can be found in <a href="https://docs.oracle.com/javase/7/docs/api/java/awt/Transparency.html" rel="noopener noreferrer nofollow" target="_blank">Transparency</a>; the correspondence is located between the field and the values at <a href="https://docs.oracle.com/javase/7/docs/api/constant-values.html#java.awt.Transparency" rel="noopener noreferrer nofollow" target="_blank">Constant Field Values</a> under the <code class="java">java.awt.Transparency</code> header.</p><p>For example, a 24-bit color image (that is, three 8-bit colors) has 3 components, 3 colors, and the <code class="java">OPAQUE</code> transparency (a value of <code class="java">1</code>). A 32-bit color image (three 8-bit colors and an alpha channel) has 4 components, 3 colors, and the <code class="java">TRANSLUCENT</code> transparency (a value of <code class="java">3</code>).</p><h5 id="objectives">Objectives</h5><ul><li><p>Print the following message: <code class="java">Input the image filename:</code></p></li><li><p>Users must input a filename (and a path if needed) of an image file. If the file exists, then print the following information (Examples 1 and 2):</p></li></ul><pre><code class="language-no-highlight">Image file: [Image filename]
+Width: [Image width]
+Height: [Image height]
+Number of components: [# of components]
+Number of color components: [# of color components]
+Bits per pixel: [Pixels for each pixel]
+Transparency: [Transparency field]</code></pre><ul><li><p>If the user inputs a path together with the filename, then print the path with the filename. (Example 2).</p></li><li><p>If the file doesn't exist, print the following message: <code class="java">The file [Image filename] doesn't exist.</code>(Example 3).</p></li></ul><p>If you need some image files to experiment with your code for stage 1, then you can <a href="https://stepik.org/media/attachments/lesson/623865/stage1.zip" rel="noopener noreferrer nofollow" target="_blank">download this zip file</a>.</p><h5 id="examples">Examples</h5><p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p><p><strong>Example 1:</strong> <em>properties of a 24-bit image file</em></p><pre><code class="language-no-highlight">Input the image filename:
+&gt; water.jpg
+Image file: water.jpg
+Width: 500
+Height: 500
+Number of components: 3
+Number of color components: 3
+Bits per pixel: 24
+Transparency: OPAQUE</code></pre><p><strong>Example 2:</strong> <em>properties of a 32-bit image file with an alpha channel</em></p><pre><code class="language-no-highlight">Input the image filename:
+&gt; test/winter.png
+Image file: test/winter.png
+Width: 800
+Height: 500
+Number of components: 4
+Number of color components: 3
+Bits per pixel: 32
+Transparency: TRANSLUCENT</code></pre><p><strong>Example 3:</strong> <em>the file doesn't exist</em></p><pre><code class="language-no-highlight">Input the image filename:
+&gt; new.jpg
+The file new.jpg doesn't exist.</code></pre>

@@ -1,0 +1,58 @@
+<h5 id="description">Description</h5>
+<p>In the previous stage, we've learned how to blend two images. Technically speaking, it is not true watermarking, as, in genuine watermarking, only a part of a watermark image (a logo or text) is blended with the original image. In this stage, we will use the alpha channel to achieve this.</p>
+<p>If an image uses the alpha channel, then its <code class="java">transparency</code> property is set to <code class="java">TRANSLUCENT</code>. An alpha channel can take 256 different transparency values for every pixel, but in most cases, it is used with only two values — <code class="java">0</code> and <code class="java">255</code>. This happens because we are interested in only two states — <strong>opaque</strong> or <strong>total transparent</strong> (<code class="java">255</code> and <code class="java">0</code>, respectively).</p>
+<p>If an image is using the alpha channel, then the <code class="java">Color</code> for each pixel should be read as:</p>
+<pre><code class="language-no-highlight">val w = Color(watermark.getRGB(x, y), true)</code></pre>
+<p>Otherwise, all pixels are set as opaque.</p>
+<p>We will use the alpha channel in the following manner. If a watermark pixel has an alpha channel value equal to <code class="java">0</code>, the corresponding output pixel should be the same as the original image pixel. If it has an alpha channel value equal to <code class="java">255</code>, then the output pixel is the linear combination of the original image and the watermark pixels, <strong>exactly as in the previous stage</strong> by using the watermark transparency percentage. By doing this, we can divide our pixels into two categories based on the value of the watermark alpha channel for each pixel.</p>
+<p>In the following example, the watermark image has the alpha channel that is used during the blending. The resulting image is the same as the original, with the exception where it is blended with the logo.</p>
+<div style="text-align: center;">
+<figure class="image" style=""><img alt="" height="297" name="plus3.png" src="https://ucarecdn.com/4b0050a4-4ca0-440d-a4d2-541d3a8333a1/" width="763"/>
+<figcaption>Images blended with 20% watermark transparency percentage</figcaption>
+</figure>
+</div>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li><strong>Start exactly as in the previous stage</strong> by reading the image and watermark filenames. Print an error message, if any error occurs and end the program (as in  stage 2). Eg. if the images dimensions are different, print <code class="java">The image and watermark dimensions are different.</code> and exit.</li>
+<li>After reading the watermark image filename, check the watermark image <code class="java">transparency</code> property;</li>
+<li>If it is <code class="java">TRANSLUCENT</code>, ask users whether they want to use the alpha channel with the message <code class="java">Do you want to use the watermark's Alpha channel?</code>;</li>
+<li>If the input is <code class="java">yes</code> (case insensitive), use the alpha channel to produce the output image (Example 1), as described above. If users input anything else, continue as in the previous stage (Example 2) without the alpha channel;</li>
+<li>If the image <code class="java">transparency</code> property isn't <code class="java">TRANSLUCENT</code>, continue as in the previous stage (Example 3).</li>
+</ul>
+<p>If you need some image files to experiment with your code for stage 3, then you can <a href="https://stepik.org/media/attachments/lesson/623865/stage3.zip" rel="noopener noreferrer nofollow" target="_blank">download this zip file</a>.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>the watermark image employs the alpha channel</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.png
+Do you want to use the watermark's Alpha channel?
+&gt; yes
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; watermarked.png
+The watermarked image watermarked.png has been created.</code></pre>
+<p><strong>Example 2:</strong> <em>the image has the alpha channel present, but the user doesn't want to employ it</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.png
+Do you want to use the watermark's Alpha channel?
+&gt; no
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; watermarked.png
+The watermarked image watermarked.png has been created.</code></pre>
+<p><strong>Example 3:</strong> <em>the watermark image doesn't have the alpha channel</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; logo_no_alpha.jpg
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; output.png
+The watermarked image output.png has been created.</code></pre>
