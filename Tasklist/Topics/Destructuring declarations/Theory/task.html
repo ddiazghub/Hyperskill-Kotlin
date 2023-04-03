@@ -1,0 +1,46 @@
+<h2>Destructuring declarations</h2>
+<div class="step-text">
+<p>Sometimes it is convenient to destructure an object into a number of variables. For example, to better manipulate it, or to make a piece of code more concise. In this topic, we'll see how this can be done.</p><h5 id="basic-destructuring">Basic destructuring</h5><p>Suppose you have a <code class="language-kotlin">User</code> data class that stores user information. It has fields such as String <code class="language-kotlin">name</code>, Int <code class="language-kotlin">age</code>, and Boolean <code class="language-kotlin">isAdmin</code>.</p><pre><code class="language-kotlin">data class User(val name: String, val age: Int, val isAdmin: Boolean)
+
+val anonym = User("Anonym", 999, false)</code></pre><p> Well, that's all that we need! Now we can separate all variables from the class and work with them as separate objects:</p><pre><code class="language-kotlin">val (userName, userAge, isAdmin) = anonym
+println(userName)  // prints Anonym
+println(userAge)   // prints 999
+println(isAdmin)   // prints false</code></pre><p>This feature is called a <strong>destructuring declaration.</strong> A destructuring declaration creates multiple variables at once. We have declared three new variables: <code class="language-kotlin">userName</code>, <code class="language-kotlin">userAge</code>, and <code class="language-kotlin">isAdmin</code>.</p><p>A destructuring declaration uses a <code class="language-kotlin">componentN()</code> operator, that returns an n-th element from the class. The code above is compiled into the following code:</p><pre><code class="language-kotlin">val userName = anonym.component1()
+val userAge = anonym.component2()
+val isAdmin = anonym.component3()</code></pre><h5 id="destructuring-without-data-classes">Destructuring without data classes</h5><p>Destructuring can be used without data classes as well. We simply need to define a <code class="language-kotlin">componentN</code> <strong>operator </strong>manually. Operators are similar to functions but use special symbols that carry out operations on operands/values. For example, <code class="language-kotlin">+</code> is an operator that performs addition. That's it! Just think of it as a function. Now let's try to override some operators for destructuring:</p><pre><code class="language-kotlin">class User(val name: String, val age: Int, val isAdmin: Boolean){
+    operator fun component1(): String = name
+    operator fun component2(): Int = age
+    operator fun component3(): Boolean = isAdmin
+}
+
+// now we can use default destructuring syntax
+fun checkIsAdmin(suspiciousUser: User) {
+    // destructuring
+    val (name, age, isAdmin) = suspiciousUser
+
+    if (isAdmin)
+        println("Have a nice day!")
+    else
+        println("Sorry, you should not be here.")
+}</code></pre><p><code class="language-kotlin">componentN</code> functions work by relying on the position of each class variable. That is a problem because a class is not meant to be positional, so it is very easy to make a mistake here.</p><p> Note that we can't override <code class="language-kotlin">componentN</code> operator in data classes because Kotlin does it for us:</p><pre><code class="language-kotlin">// Error: Conflicting overloads: public final operator fun component1(): String defined in StoreClass
+data class StoreClass(val info: String) {
+    operator fun component1() = info
+}</code></pre><h5 id="destructuring-with-lists-and-loops">Destructuring with lists and loops</h5><p>Destructuring declarations also work with lists and loops because <code class="language-kotlin">List</code><strong> </strong>is a class with the implemented <code class="language-kotlin">componentN</code> operator. Now, let's extract the first 3 elements:</p><pre><code class="language-kotlin">fun processList(customerInfo: MutableList&lt;String&gt;) {
+    if (customerInfo.size &lt; 3) return
+    val (firstName, lastName, city) = customerInfo
+    showCustomerName(firstName, lastName)
+    findPopularSellersInCity(city)
+}
+</code></pre><p>If the list<strong> </strong>has more than 3 elements, they will not be processed and the program will continue its work. In the same way, if the list has less than 3 elements, there will be an error and the program will crash. To avoid that, we add an if-check.</p><p>Note that we can get the first N elements from a list or class with more than N components. This might be useful in some tasks.</p><p>Destructuring in for-loops also involves a <code class="language-kotlin">componentN</code> operator. Now, let's send to the analysts in our company all the data on non-admin users:</p><pre><code class="language-kotlin">fun processAnalytics(usersData: MutableList&lt;User&gt;) {
+    for ((name, age, isAdmin) in usersData) {
+        if (!isAdmin)
+            sendAnalyticsToCompany(name, age)
+    }
+}</code></pre><p>This way each element in <code class="language-kotlin">MutableList&lt;User&gt;</code>  will be destructured.</p><h5 id="underscoring-for-variables">Underscoring for variables</h5><p>When we start using destructuring declarations, the Kotlin compiler may warn us about unused variables in the destructuring declaration. The default IDE solution is to rename unused variables as "_" (<strong>underscore</strong>), though it has some drawbacks. For example, let's try to copy-paste some code from somewhere else:</p><pre><code class="language-kotlin">val usersData = mutableListOf&lt;User&gt;()
+for ((_, _, isAdmin) in usersData) {
+    // /~
+}</code></pre><p>Looks familiar, doesn't it? In the example above, the <code class="language-kotlin">componentN</code> operator skipped <code class="language-kotlin">name</code> and <code class="language-kotlin">age</code> properties, so they cannot be used in the cycle.</p><p>Another useful feature is the <strong>trailing comma</strong>. You can add a comma at the end of the parameter list and it will work. It's really convenient because you can copy and paste an additional argument without adding commas.</p><pre><code class="language-kotlin">val usersData = mutableListOf&lt;User&gt;()
+for ((name, age, ) in usersData) {
+    // /~
+}</code></pre><h5 id="conclusion">Conclusion</h5><p>Destructuring declarations are a convenient feature that allows declaring new variables in a tuple-like manner, which yields a more concise and easy-to-read code. However, its positional mechanism is inherently different than the associational meaning of class variables, and this may result in bugs.</p>
+</div>
