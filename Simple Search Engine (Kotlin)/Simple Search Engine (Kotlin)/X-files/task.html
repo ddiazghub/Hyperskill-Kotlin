@@ -1,0 +1,34 @@
+<div class="step-text">
+<h5 id="description" style="text-align: center;">Description</h5>
+<p>Now, let's further modify the program and teach it to read the input data from a file.</p>
+<h5 id="objectives" style="text-align: center;">Objectives</h5>
+<p>In this stage, your program should read data from a text file instead of the standard input. The file structure will depend on your text data type (personal information, address information, book information, and so on). See an example below:</p>
+<pre><code class="language-no-highlight">Dwight Joseph djo@gmail.com
+Rene Webb webb@gmail.com
+Katie Jacobs
+Erick Harrington harrington@gmail.com
+Myrtle Medina
+Erick Burgess</code></pre>
+<p>The program must process the command line argument <code class="java">--data</code> followed by the name of the file with the data, for example, <code class="java">--data text.txt</code>.</p>
+<p>Note that the file should not include the total number of lines. All lines must be read only once, at the start of your program.</p>
+<h5 id="example" style="text-align: center;">Example</h5>
+<p>Here is an example of an output line, which contains three items: the first name, the last name, and an email address.</p>
+<p>The lines that start with <code class="java">&gt; </code> represent the user input. Note that these symbols are not part of the input. </p>
+<pre><code class="language-no-highlight">=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 1
+
+Enter a name or email to search all matching people.
+&gt; WEBB@gmail.com
+Rene Webb webb@gmail.com
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+&gt; 0
+
+Bye!</code></pre>
+</div>
