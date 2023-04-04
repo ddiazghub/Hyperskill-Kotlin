@@ -358,6 +358,256 @@ files:
         }
     }
   learner_created: false
-feedback_link: https://hyperskill.org/projects/88/stages/493/implement#comment
-status: Unchecked
+- name: src/calculator/CalculatorException.kt
+  visible: true
+  text: |-
+    package calculator
+
+    sealed class CalculatorException(message: String) : RuntimeException(message) {
+        object InvalidExpression : CalculatorException("Invalid expression")
+        object UnknownCommand : CalculatorException("Unknown command")
+        object InvalidAssignment : CalculatorException("Invalid assignment")
+        object InvalidIdentifier : CalculatorException("Invalid identifier")
+        object UnknownVariable : CalculatorException("Unknown variable")
+    }
+  learner_created: true
+- name: src/calculator/Helpers.kt
+  visible: true
+  text: |-
+    package calculator
+
+    fun readlns(): Sequence<String> = sequence {
+        while (true) {
+            val input = readln().trim()
+            if (input.isNotEmpty()) yield(input)
+        }
+    }
+  learner_created: true
+- name: src/calculator/Statement.kt
+  visible: true
+  text: |-
+    package calculator
+
+    import kotlin.math.pow
+
+    sealed class Statement {
+        class Expression(private val tokens: List<Token.ExpressionToken>) : Statement() {
+            fun eval(variables: Map<String, Int>): Int {
+                val stack = mutableListOf<Int>()
+
+                for (token in this.tokens) {
+                    when (token) {
+                        is Token.Number -> stack.add(token.value)
+                        is Token.Variable -> stack.add(token.sign * (variables[token.name] ?: throw CalculatorException.UnknownVariable))
+                        is Token.Operator -> if (stack.size > 1) {
+                            val result = (stack.removeLast() to stack.removeLast()).let {
+                                when (token) {
+                                    is Token.Add -> it.second + it.first
+                                    is Token.Sub -> it.second - it.first
+                                    is Token.Mul -> it.second * it.first
+                                    is Token.Div -> it.second / it.first
+                                    is Token.Pow -> it.second.toDouble().pow(it.first).toInt()
+                                }
+                            }
+
+                            stack.add(result)
+                        } else throw CalculatorException.InvalidExpression
+                        else -> throw CalculatorException.InvalidExpression
+                    }
+                }
+
+                return stack.last()
+            }
+
+            companion object {
+                fun parse(tokens: List<Token>): Expression {
+                    val expression = reduce(tokens)
+                    val stack = mutableListOf<Token.ExpressionToken>()
+                    val result = mutableListOf<Token.ExpressionToken>()
+
+                    for (token in expression) {
+                        when (token) {
+                            is Token.Operand -> result.add(token)
+                            is Token.OpenParenth -> stack.add(token)
+                            is Token.Operator -> {
+                                while ((stack.lastOrNull() ?: Token.OpenParenth).let { it is Token.Operator && token.priority <= it.priority })
+                                    result.add(stack.removeLast())
+
+                                stack.add(token)
+                            }
+                            is Token.CloseParenth -> {
+                                while ((stack.lastOrNull() ?: throw CalculatorException.InvalidExpression) !is Token.OpenParenth)
+                                    result.add(stack.removeLast())
+
+                                stack.removeLast()
+                            }
+                            is Token.Assign -> throw CalculatorException.InvalidAssignment
+                            else -> throw CalculatorException.InvalidExpression
+                        }
+                    }
+
+                    while (stack.isNotEmpty()) {
+                        when (val top = stack.removeLast()) {
+                            is Token.OpenParenth -> throw CalculatorException.InvalidExpression
+                            else -> result.add(top)
+                        }
+                    }
+
+                    return Expression(result)
+                }
+
+                private fun reduce(tokens: List<Token>): List<Token> {
+                    val result = mutableListOf<Token>()
+
+                    for (token in tokens) {
+                        val last = result.lastOrNull()
+
+                        when (token) {
+                            is Token.Add -> if (last is Token.Operand) result.add(token)
+                            is Token.Sub -> when (last) {
+                                is Token.Add -> result.removeLast().also { result.add(token) }
+                                is Token.Sub -> result.removeLast().also { result.add(Token.Add) }
+                                else -> result.add(token)
+                            }
+                            is Token.Number -> when (last to result.elementAtOrNull(result.size - 2)) {
+                                Token.Sub to null, Token.Sub to Token.OpenParenth -> result.removeLast().also {
+                                    result.add(Token.Number(-token.value))
+                                }
+                                else -> result.add(token)
+                            }
+                            else -> result.add(token)
+                        }
+                    }
+
+                    return result
+                }
+            }
+        }
+
+        class Assignment(val variable: String, val expression: Expression) : Statement() {
+            companion object {
+                fun parse(tokens: List<Token>): Assignment? {
+                    return when (tokens.indexOf(Token.Assign)) {
+                        -1 -> null
+                        1 -> tokens[0].let {
+                            if (it is Token.Variable)
+                                Assignment(it.name, Expression.parse(tokens.subList(2, tokens.size)))
+                            else throw CalculatorException.InvalidIdentifier
+                        }
+                        else -> throw CalculatorException.InvalidAssignment
+                    }
+                }
+            }
+        }
+
+        sealed class Command : Statement() {
+            companion object {
+                fun parse(tokens: List<Token>): Command = when (tokens) {
+                    listOf(Token.Exit) -> Exit
+                    listOf(Token.Help) -> Help
+                    else -> throw CalculatorException.UnknownCommand
+                }
+            }
+        }
+
+        object Exit : Command()
+        object Help : Command()
+
+        companion object {
+            private val TOKEN_REGEX = Regex("\\d+|[a-zA-Z]+|\\++|\\S")
+
+            private fun lex(statement: String): List<Token> {
+                return TOKEN_REGEX
+                    .findAll(statement)
+                    .map { Token.parse(it.groupValues[0]) }
+                    .toList()
+            }
+
+            fun parse(string: String): Statement = lex(string).let {
+                if (it[0] === Token.Div) Command.parse(it.subList(1, it.size))
+                else Assignment.parse(it) ?: Expression.parse(it)
+            }
+        }
+    }
+  learner_created: true
+- name: src/calculator/Calculator.kt
+  visible: true
+  text: |-
+    package calculator
+
+    object Calculator {
+        private val variables: MutableMap<String, Int> = mutableMapOf()
+
+        fun start() {
+            for (line in readlns()) {
+                try {
+                    when (val statement = Statement.parse(line)) {
+                        is Statement.Exit -> return println("Bye!")
+                        is Statement.Help -> println("The program calculates the sum of numbers")
+                        is Statement.Expression -> println(statement.eval(variables))
+                        is Statement.Assignment -> try {
+                            variables[statement.variable] = statement.expression.eval(variables)
+                        } catch (e: CalculatorException) {
+                            throw CalculatorException.InvalidAssignment
+                        }
+                    }
+                } catch (e: CalculatorException) {
+                    println(e.message)
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/calculator/Token.kt
+  visible: true
+  text: |-
+    package calculator
+
+    sealed class Token {
+        object Assign : Token()
+        object Exit : Token()
+        object Help : Token()
+
+        sealed class ExpressionToken : Token()
+        object OpenParenth : ExpressionToken()
+        object CloseParenth : ExpressionToken()
+
+        sealed class Operand : ExpressionToken()
+        class Variable(val name: String, val sign: Int = 1) : Operand()
+        class Number(val value: Int) : Operand()
+
+        sealed class Operator(val priority: Int) : ExpressionToken()
+        object Add : Operator(0)
+        object Sub : Operator(0)
+        object Mul : Operator(1)
+        object Div : Operator(1)
+        object Pow : Operator(2)
+
+        companion object {
+            fun parse(string: String): Token = when (string.last()) {
+                in 'a'..'z', in 'A'..'Z' -> when (string) {
+                    "exit" -> Exit
+                    "help" -> Help
+                    else -> Variable(string)
+                }
+                in '0'..'9' -> Number(string.toInt())
+                '+' -> Add
+                '-' -> Sub
+                '*' -> Mul
+                '/' -> Div
+                '^' -> Pow
+                '(' -> OpenParenth
+                ')' -> CloseParenth
+                '=' -> Assign
+                else -> throw CalculatorException.InvalidExpression
+            }
+        }
+    }
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/7816#comment
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Tue, 04 Apr 2023 22:12:08 UTC"
 record: -1

@@ -259,6 +259,130 @@ files:
         }
     }
   learner_created: false
-feedback_link: https://hyperskill.org/projects/88/stages/492/implement#comment
-status: Unchecked
-record: -1
+- name: src/calculator/CalculatorException.kt
+  visible: true
+  text: |-
+    package calculator
+
+    sealed class CalculatorException(message: String) : RuntimeException(message) {
+        object InvalidExpression : CalculatorException("Invalid expression")
+        object UnknownCommand : CalculatorException("Unknown command")
+        object InvalidAssignment : CalculatorException("Invalid assignment")
+        object InvalidIdentifier : CalculatorException("Invalid identifier")
+        object UnknownVariable : CalculatorException("Unknown variable")
+    }
+  learner_created: true
+- name: src/calculator/Helpers.kt
+  visible: true
+  text: |-
+    package calculator
+
+    val WHITESPACE = Regex("\\s+")
+    val PLUS = Regex("((\\+\\s*)+|-\\s*-)")
+    val MINUS = Regex("\\s*-\\s*")
+    val ASSIGNMENT = Regex("\\s*=\\s*")
+
+    fun readlns(): Sequence<String> = sequence {
+        while (true) {
+            val input = readln().trim()
+            if (input.isNotEmpty()) yield(input)
+        }
+    }
+  learner_created: true
+- name: src/calculator/Statement.kt
+  visible: true
+  text: |-
+    package calculator
+
+    sealed class Statement {
+        class Expression(private val expression: String) : Statement() {
+            fun eval(variables: Map<String, Int>): Int {
+                val result = expression.replace(PLUS, " ")
+                    .replace(MINUS, " -")
+                    .trimStart()
+                    .split(WHITESPACE)
+                    .map { it.toIntOrNull() ?: variables[it] }
+
+                if (result.size == 1 && result[0] == null)
+                        throw CalculatorException.UnknownVariable
+
+                return result.sumOf { it ?: throw CalculatorException.InvalidExpression }
+            }
+        }
+
+        class Assignment(val variable: String, val expression: Expression) : Statement() {
+            companion object {
+                fun parse(string: String): Assignment? = string.split(ASSIGNMENT).let { parts ->
+                    when (parts.size) {
+                        1 -> null
+                        2 -> parts[0].takeIf { it.all { it in 'a'..'z' || it in 'A'..'Z' } }.let {
+                            Assignment(it ?: throw CalculatorException.InvalidIdentifier, Expression(parts[1]))
+                        }
+                        else -> throw CalculatorException.InvalidAssignment
+                    }
+                }
+            }
+        }
+
+        sealed class Command : Statement() {
+            companion object {
+                fun parse(string: String): Command = when (string) {
+                    "exit" -> Exit
+                    "help" -> Help
+                    else -> throw CalculatorException.UnknownCommand
+                }
+            }
+        }
+
+        object Exit : Command()
+        object Help : Command()
+
+        companion object {
+            fun parse(string: String): Statement = if (string.startsWith("/")) {
+                Command.parse(string.substring(1))
+            } else {
+                Assignment.parse(string) ?: Expression(string)
+            }
+        }
+    }
+  learner_created: true
+- name: src/calculator/Calculator.kt
+  visible: true
+  text: |-
+    package calculator
+
+    object Calculator {
+        val variables: MutableMap<String, Int> = mutableMapOf()
+
+        fun start() {
+            for (line in readlns()) {
+                try {
+                    when (val statement = Statement.parse(line)) {
+                        Statement.Exit -> return println("Bye!")
+                        Statement.Help -> println("The program calculates the sum of numbers")
+                        is Statement.Expression -> println(statement.eval(variables))
+                        is Statement.Assignment -> try {
+                            statement.expression.eval(variables).let {
+                                variables[statement.variable] = it
+                                variables["-" + statement.variable] = -it
+                            }
+                        } catch (e: CalculatorException) {
+                            throw CalculatorException.InvalidAssignment
+                        }
+                    }
+                } catch (e: CalculatorException) {
+                    println(e.message)
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/calculator/Token.kt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/7815#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 04 Apr 2023 19:04:44 UTC"
+record: 7

@@ -1,5 +1,5 @@
 package calculator
 
 fun main() {
-    println("Hello, World!")
+    Calculator.start()
 }
