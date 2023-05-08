@@ -1,0 +1,48 @@
+<p></p><h5 id="description">Description</h5><p>Let's implement the core logic of the game. Create a game loop where the program asks players to guess a secret word and tell whether it was a success.</p><p>First of all, the program must randomly select a word from the candidate words list. This secret word is changed every time players restart the game. For choosing this word, use the <code class="java">random</code> Kotlin class and the <code class="java">nextInt()</code> function.</p><p>The code from the previous stage shouldn't be changed. In this stage you will build on that code. After printing the game title (in the previous stage), the program should ask players to guess the secret word. If the guessed word is the secret one, the game ends. If the word isn't a secret one, the program informs the player which letters of the input word are in the secret word. It also notifies the player if any of these letters has the same position in the secret word.</p><p>After a word's input, the program should print it again by making the following changes (the <strong>clue string</strong>):</p><ul><li><p>If a letter in the guess word is at the same position as in the secret word, print it in the uppercase.</p></li><li><p>If it exist, but in other position, then print it in the lowercase.</p></li><li><p>And finally, if a letter doesn't exist in the secret word, print an underscore <code class="java">_</code> instead.</p></li></ul><p>For example:</p><table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"><tbody><tr><th><p>Secret word</p></th><th><p>Guess word</p></th><th><p>Clue string</p></th></tr><tr><td><p><code class="java">write</code></p></td><td><p><code class="java">trail</code></p></td><td><p><code class="java">tR_i_</code></p></td></tr><tr><td><p><code class="java">house</code></p></td><td><p><code class="java">hound</code></p></td><td><p><code class="java">HOU__</code></p></td></tr><tr><td><p><code class="java">point</code></p></td><td><p><code class="java">train</code></p></td><td><p><code class="java">t__in</code></p></td></tr><tr><td><p><code class="java">solve</code></p></td><td><p><code class="java">batch</code></p></td><td><p><code class="java">_____</code></p></td></tr></tbody></table><h5 id="objectives">Objectives</h5><p>The code from the previous stage shouldn't be altered.</p><p>After printing the name of the game <code class="java">Words Virtuoso</code>, implement the following:</p><ol><li><p>Choose a secret word from the candidate words file.</p></li><li><p>Ask the player for input with the prompt <code class="java">Input a 5-letter word:</code>. The input is <strong>case-insensitive</strong>.</p></li><li><p>The player can quit the game at any time, by inputting the word <code class="java">exit</code>. In this case, print <code class="java">The game is over.</code> and exit.</p></li><li><p>If the input is the same as the secret word, print <code class="java">Correct!</code> and exit.</p></li><li><p>If the input is invalid, print an error message (described below) and go to step 2.</p></li><li><p>In any other case, print the clue string (created as described at the description).</p></li><li><p>Go to Step 2.</p></li></ol><p>The player input should be checked for errors (step 4). So, if the input:</p><ul><li><p>isn't a five-letter word, print <code class="java">The input isn't a 5-letter word.</code></p></li><li><p>has at least one invalid character (that is, not in <code class="java">A</code> to <code class="java">Z</code>), print <code class="java">One or more letters of the input aren't valid.</code></p></li><li><p>has duplicate letters, print <code class="java">The input has duplicate letters.</code></p></li><li><p>isn't in the words' list, print <code class="java">The input word isn't included in my words list.</code></p></li></ul><p>The order of checking should be the same as above.</p><h5 id="examples">Examples</h5><p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p><p><strong>Example 1:</strong> <em>standard execution with arguments: words.txt candidates.txt</em></p><pre><code class="language-no-highlight">Words Virtuoso
+
+Input a 5-letter word:
+&gt; train
+_r_IN
+
+Input a 5-letter word:
+&gt; round
+RO_n_
+
+Input a 5-letter word:
+&gt; robin
+
+Correct!</code></pre><p><strong>Example 2:</strong> <em>early exit</em></p><pre><code class="language-no-highlight">Words Virtuoso
+
+Input a 5-letter word:
+&gt; alert
+__er_
+
+Input a 5-letter word:
+&gt; exit
+
+The game is over.</code></pre><p><strong>Example 3:</strong> <em>input errors</em></p><pre><code class="language-no-highlight">Words Virtuoso
+
+Input a 5-letter word:
+&gt; trains
+The input isn't a 5-letter word.
+
+Input a 5-letter word:
+&gt; trouvée
+The input isn't a 5-letter word.
+
+Input a 5-letter word:
+&gt; étage
+One or more letters of the input aren't valid.
+
+Input a 5-letter word:
+&gt; walls
+The input has duplicate letters.
+
+Input a 5-letter word:
+&gt; poche
+The input word isn't included in my words list.
+
+Input a 5-letter word:
+&gt; exit
+
+The game is over.</code></pre>

@@ -1,0 +1,91 @@
+<h5 id="description">Description</h5>
+<p>Connect Four is a classic game where players drop colorful discs onto a vertical board. The main goal of the game is to form a line of four discs of the same color horizontally, vertically, or diagonally.</p>
+<p>In this project, you will create a software version of this game. Typically, the game board has 6 rows and 7 columns, but in this version, the number of rows and columns can vary from 5 to 9.</p>
+<p>In this stage, the program should read the players' names and the board size from the console input.</p>
+<p>The board size is input in the following format: <code class="java">&lt;Rows&gt; X &lt;Columns&gt;</code> or <code class="java">&lt;Rows&gt; x &lt;Columns&gt;</code>, for example, <code class="java">7 X 8</code> or <code class="java">8x9</code>. Whitespaces (spaces and tabs) have no effect.</p>
+<h5 id="objectives">Objectives</h5>
+<p>The program should print the program title <code class="java">Connect Four</code>, ask for the 1st player's name with the prompt <code class="java">First player's name:</code>, and read it. Then it should ask for the 2nd player's name with the prompt <code class="java">Second player's name:</code> and read it.</p>
+<p>Subsequently, the program should ask for the board dimensions with the following prompt:</p>
+<pre><code class="language-no-highlight">Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)</code></pre>
+<p>Once the dimensions are entered, it should read them (Examples 1, 3). Ignore any whitespaces. If users press the Enter button right away (ignoring the dimension prompt), then the board size is 6 rows and 7 columns (see Example 2).</p>
+<p>If the number of rows is outside the 5-9 range, print the following message <code class="java">Board rows should be from 5 to 9</code> and ask for dimensions once again (see Example 3).</p>
+<p>If the number of columns is outside the 5-9 range, print the following message <code class="java">Board columns should be from 5 to 9</code> and ask for dimensions once again (see Example 3).</p>
+<p>If users fail to input dimensions in the correct format, print <code class="java">Invalid input</code> and ask for dimensions once again (see Example 4).</p>
+<p>Finally, output the following message:</p>
+<pre><code class="java">&lt;1st player's name&gt; VS &lt;2nd players name&gt;
+&lt;Rows&gt; X &lt;Columns&gt; board</code></pre>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>defining the board size</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Ava
+Second player's name:
+&gt; Oliver
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 7 x 9
+Ava VS Oliver
+7 X 9 board</code></pre>
+<p><strong>Example 2: </strong><em>pressing Enter to get the default board size</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Ava
+Second player's name:
+&gt; Oliver
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt;
+Ava VS Oliver
+6 X 7 board</code></pre>
+<p><strong>Example 3: </strong><em>invalid board size</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Oliver
+Second player's name:
+&gt; Ava
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 4x7
+Board rows should be from 5 to 9
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 10x7
+Board rows should be from 5 to 9
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 7 x 4
+Board columns should be from 5 to 9
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 7 X 10
+Board columns should be from 5 to 9
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 5X9
+Oliver VS Ava
+5 X 9 board</code></pre>
+<p><strong>Example 4: </strong><em>invalid input</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Ava
+Second player's name:
+&gt; Oliver
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 6 7
+Invalid input
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 6_7
+Invalid input
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 6 V 7
+Invalid input
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 6x7
+Ava VS Oliver
+6 X 7 board</code></pre>

@@ -1,0 +1,12 @@
+<h2>Capturing variable</h2>
+<p>Take a look at this code:</p>
+
+<pre><code class="language-kotlin">var counter: () -&gt; Int = { -42 }
+
+fun reinitializeCounter(): Int {
+    var value = 0
+    counter = { ++value }
+    return value
+}</code></pre>
+
+<p>What does the <code class="language-kotlin">reinitializeCounter</code> function return if you call it and don't call the <code class="language-kotlin">counter</code> at the same time?</p>

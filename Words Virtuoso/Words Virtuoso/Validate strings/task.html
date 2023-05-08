@@ -1,0 +1,38 @@
+<h5 id="description">Description</h5>
+<p>In this project, you will create a game where users guess words. Users input a series of words, and the program reports on the input word characters that coincide with a randomly chosen secret word.</p>
+<p>The words in this game have specific properties. They are five-letter English words that don't have any duplicate characters. That is, they consist of five unique (word-wise) English-alphabet characters.</p>
+<p>In this stage, write the appropriate code for checking whether an input string consists of five unique English letters. The input is referred to as a string, not a word because you will not check whether it is a valid English word.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Output the <code class="java">Input a 5-letter string:</code> line and wait for a five-letter string. Ignore any leading or trailing spaces. The input string isn't case-sensitive so that it can be a mix of upper or lower case characters.</li>
+</ul>
+<p>If the user inputs a string:</p>
+<ul>
+<li>with a number of letters different than five, print <code class="java">The input isn't a 5-letter string.</code>;</li>
+<li>that consists of non-English alphabet characters (from <code class="java">A</code> to <code class="java">Z</code>), print <code class="java">The input has invalid characters.</code>;</li>
+<li>with duplicate characters, print <code class="java">The input has duplicate letters.</code>;</li>
+<li>otherwise, print <code class="java">The input is a valid string.</code>.</li>
+</ul>
+<p>The order of checking the string properties should be the same as above.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>a valid string</em></p>
+<pre><code class="language-no-highlight">Input a 5-letter string:
+&gt; Smile
+The input is a valid string.</code></pre>
+<p><strong>Example 2:</strong> <em>input isn't a five-letter string</em></p>
+<pre><code class="language-no-highlight">Input a 5-letter string:
+&gt; Trains
+The input isn't a 5-letter string.</code></pre>
+<p><strong>Example 3:</strong> <em>Input with no English characters</em></p>
+<pre><code class="language-no-highlight">Input a 5-letter string:
+&gt; trέξs
+The input has invalid characters.</code></pre>
+<p><strong>Example 4:</strong> <em>input with a space</em></p>
+<pre><code class="language-no-highlight">Input a 5-letter string:
+&gt; so da
+The input has invalid characters.</code></pre>
+<p><strong>Example 5:</strong> <em>input with duplicate characters</em></p>
+<pre><code class="language-no-highlight">Input a 5-letter string:
+&gt; HELLO
+The input has duplicate letters.</code></pre>

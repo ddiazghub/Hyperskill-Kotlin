@@ -1,0 +1,61 @@
+<div class="step-text">
+<h5 id="description" style="text-align: center;">Description</h5>
+<p>Now let's Improve your search engine to make it support complex queries containing word sequences and use several strategies that determine how to match data.</p>
+<h5 id="objectives" style="text-align: center;">Objectives</h5>
+<p>In this stage, your program should be able to use such searching strategies as <code class="java">ALL</code>,  <code class="java">ANY</code>, and <code class="java">NONE</code>.</p>
+<p>Take, for example, these six sample lines:</p>
+<pre><code class="language-no-highlight">Dwight Joseph djo@gmail.com
+Rene Webb webb@gmail.com
+Katie Jacobs
+Erick Harrington harrington@gmail.com
+Myrtle Medina
+Erick Burgess</code></pre>
+<ul>
+<li>If the strategy is <code class="java">ALL</code>, the program should print lines containing all the words from the query.</li>
+</ul>
+<p>Query:</p>
+<pre><code class="language-no-highlight">Harrington Erick</code></pre>
+<p>Result:</p>
+<pre><code class="language-no-highlight">Erick Harrington harrington@gmail.com</code></pre>
+<ul>
+<li>If the strategy is <code class="java">ANY</code>, the program should print the lines containing at least one word from the query.</li>
+</ul>
+<p>Query:</p>
+<pre><code class="language-no-highlight">Erick Dwight webb@gmail.com
+</code></pre>
+<p>Result:</p>
+<pre><code class="language-no-highlight">Erick Harrington harrington@gmail.com
+Erick Burgess
+Dwight Joseph djo@gmail.com
+Rene Webb webb@gmail.com</code></pre>
+<ul>
+<li>If the strategy is <code class="java">NONE</code>, the program should print the lines that do not contain any words from the query at all.</li>
+</ul>
+<p>Query:</p>
+<pre><code class="language-no-highlight">djo@gmail.com ERICK
+</code></pre>
+<p>Result:</p>
+<pre><code class="language-no-highlight">Katie Jacobs
+Myrtle Medina
+Rene Webb webb@gmail.com</code></pre>
+<p>All the listed operations should be implemented with an inverted index, and the results should not contain any duplicates.</p>
+<p>Do not forget to use methods to decompose your program.</p>
+<h5 id="example" style="text-align: center;">Example</h5>
+<p>The lines that start with <code class="java">&gt; </code> represent the user input. Note that these symbols are not part of the input. </p>
+<pre><code class="language-no-highlight">=== Menu ===
+1. Find a person
+2. Print all persons
+0. Exit
+&gt; 1
+
+Select a matching strategy: ALL, ANY, NONE
+&gt; ANY
+
+Enter a name or email to search all matching people.
+&gt; Katie Erick QQQ
+
+3 persons found:
+Katie Jacobs
+Erick Harrington harrington@gmail.com
+Erick Burgess</code></pre>
+</div>

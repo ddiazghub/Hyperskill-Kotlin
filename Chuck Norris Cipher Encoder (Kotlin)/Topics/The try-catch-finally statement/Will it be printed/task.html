@@ -1,0 +1,20 @@
+<h2>Will it be printed?</h2>
+<html><body><p>You have the following program:</p>
+<pre><code class="language-kotlin">fun division() {
+    var a = 0
+    try {
+        a = 44 / 0
+        println("The try block is executed")
+    }
+    catch (e: NumberFormatException) {
+        println("The catch block is executed")
+    }
+    finally {
+        println("The finally block is executed")
+    }
+}
+
+fun main() {
+    division()
+}</code></pre>
+<p>Which code blocks will be executed?</p></body></html>

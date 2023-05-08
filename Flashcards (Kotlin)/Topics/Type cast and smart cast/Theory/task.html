@@ -1,0 +1,73 @@
+<h2>Type cast and smart cast</h2>
+<p>Type checks and casts are essential in any programming language. Type checks allow developers to verify if an object belongs to a particular data type, while type casts enable programmers to convert an object from one type to another. Kotlin, being a statically-typed language, has several features that make type checks and casts easy and safe to use.</p>
+<h5 id="is-and-is-operators">is and !is operators</h5>
+<p>The <code class="language-kotlin">is</code> and <code class="language-kotlin">!is</code> operators in Kotlin are used for type checks. They allow developers to check if an object belongs to a particular data type. The <code class="language-kotlin">is</code> operator returns true if an object belongs to the specified type and false if it doesn't. Conversely, the <code class="language-kotlin">!is</code> operator returns true if an object doesn't belong to the specified type and false if it does.</p>
+<p>For example:</p>
+<pre><code class="language-kotlin">val obj: Any = "Hello, Kotlin"
+if (obj is String) {
+   println(obj.uppercase())
+} else {
+   println("obj is not a String")
+}</code></pre>
+<p>In the above code, we use the <code class="language-kotlin">is</code> operator to check if the <code class="language-kotlin">obj</code> variable is a <code class="language-kotlin">String</code>. If it is a <code class="language-kotlin">String</code>, we convert it to uppercase and print it. Otherwise, we print a message saying that <code class="language-kotlin">obj</code> is not a <code class="language-kotlin">String</code>. This is a good example for the <code class="language-kotlin">is</code> operator, but let's remember the idioms in Kotlin, one of the advantages of this programming language. One of the often used idioms in Kotlin is:</p>
+<pre><code class="language-kotlin">when (x) {
+    is Foo -&gt; ...
+    is Bar -&gt; ...
+    else   -&gt; ...
+}</code></pre>
+<p>Look at an example of how we can use that:</p>
+<pre><code class="language-kotlin">fun processInput(input: Any) {
+    when (input) {
+        is Int -&gt; println("Input is an integer")
+        is String -&gt; println("Input is a string")
+        is Double -&gt; println("Input is a double")
+        else -&gt; println("Unknown input")
+    }
+}</code></pre>
+<p>In this example, the function <code class="language-kotlin">processInput</code> takes an argument of type <code class="language-kotlin">Any</code>, which means it can accept any type of object. Within the function, we use <code class="language-kotlin">when</code> with <code class="language-kotlin">is</code> to check the type of the input object. Depending on the type, we print a message indicating what type of input it is. If the input object is not one of the expected types, we print the "Unknown input" message.</p>
+<h5 id="smart-casts">Smart casts</h5>
+<p>Kotlin also has a feature known as smart casts. Smart casts are used to simplify code when working with nullable types. When a nullable type is checked with the <code class="language-kotlin">is</code> operator, Kotlin automatically casts the object to a non-nullable type.</p>
+<p>For example:</p>
+<pre><code class="language-kotlin">fun printLength(obj: Any) {
+   if (obj is String) {
+      println(obj.length)
+   }
+}</code></pre>
+<p>In the above code, we check if the <code class="language-kotlin">obj</code> variable is a <code class="language-kotlin">String</code> by using the <code class="language-kotlin">is</code> operator. If it is a <code class="language-kotlin">String</code>, we print its length. Since Kotlin automatically casts the <code class="language-kotlin">obj</code> variable to a non-nullable type, we don't need to use any type cast operator.</p>
+<h5 id="unsafe-cast-operator">"Unsafe" cast operator</h5>
+<p>Kotlin has an unsafe cast operator, which is represented by the <code class="language-kotlin">as</code> keyword. The <code class="language-kotlin">as</code> keyword is used to cast an object to a non-nullable type. If the object cannot be cast to the specified type, the <code class="language-kotlin">as</code> operator throws a ClassCastException.</p>
+<p>For example:</p>
+<pre><code class="language-kotlin">val obj: Any = "Hello, Kotlin"
+val str: String = obj as String // Unsafe cast operator
+println(str.uppercase())</code></pre>
+<p>In the above code, we use the <code class="language-kotlin">as</code> operator to cast the <code class="language-kotlin">obj</code> variable to a <code class="language-kotlin">String</code>. If <code class="language-kotlin">obj</code> is not a <code class="language-kotlin">String</code>, the <code class="language-kotlin">as</code> operator throws a ClassCastException.</p>
+<h5 id="safe-nullable-cast-operator">"Safe" (nullable) cast operator</h5>
+<p>Kotlin also has a safe cast operator, which is represented by the <code class="language-kotlin">as?</code> keyword. The <code class="language-kotlin">as?</code> operator is used to cast an object to a nullable type. If the object cannot be cast to the specified type, the <code class="language-kotlin">as?</code> operator returns <code class="language-kotlin">null</code>.</p>
+<p>For example:</p>
+<pre><code class="language-kotlin">val obj: Any = 123
+val str: String? = obj as? String // Safe (nullable) cast operator
+println(str?.uppercase())</code></pre>
+<p>In the above code, we use the <code class="language-kotlin">as?</code> operator to cast the <code class="language-kotlin">obj</code> variable to a <code class="language-kotlin">String</code>. Since <code class="language-kotlin">obj</code> is not a <code class="language-kotlin">String</code>, the <code class="language-kotlin">as?</code> operator returns <code class="language-kotlin">null</code>. Therefore, the <code class="language-kotlin">println</code> statement is not executed.</p>
+<h5 id="generics-type-checks-and-casts">Generics type checks and casts</h5>
+<p>In Kotlin, we can use type checks and casts with generics as well. When working with generics, we may need to check whether an object is an instance of a specific type parameter or cast it to a type parameter.</p>
+<p>To check whether an object is an instance of a specific type parameter, we can use the <code class="language-kotlin">is</code> operator with the type parameter in angle brackets. For example:</p>
+<pre><code class="language-kotlin">fun &lt;T&gt; exampleFunction(obj: Any) {
+    if (obj is T) {
+        // obj is an instance of type parameter T
+    } else {
+        // obj is not an instance of type parameter T
+    }
+}</code></pre>
+<p>Similarly, we can cast an object to a type parameter using the <code class="language-kotlin">as</code> operator with the type parameter in angle brackets. However, if the object is not an instance of the type parameter, <code class="language-kotlin">ClassCastException</code> will be thrown. To avoid this, we can use the safe cast operator <code class="language-kotlin">as?</code>, which returns <code class="language-kotlin">null</code> if the cast is not possible.</p>
+<pre><code class="language-kotlin">fun &lt;T&gt; exampleFunction(obj: Any) {
+    val tObj: T? = obj as? T
+    if (tObj != null) {
+        // obj can be safely cast to type parameter T
+    } else {
+        // obj cannot be cast to type parameter T
+    }
+}</code></pre>
+<p>It's important to note that type erasure occurs with generics in Kotlin, meaning that the actual type of a generic object is not known at runtime. Therefore, certain operations, like creating a new instance of a type parameter or checking if a type parameter is a subtype of another class, are not possible.</p>
+<p>In summary, type checks and casts with generics in Kotlin can be done using the <code class="language-kotlin">is</code> and <code class="language-kotlin">as</code> operators with the type parameter in angle brackets, and the safe cast operator <code class="language-kotlin">as?</code> can be used to avoid <code class="language-kotlin">ClassCastException</code>s. However, certain operations may not be possible due to type erasure.</p>
+<h5 id="conclusion">Conclusion</h5>
+<p>In conclusion, type cast and smart cast are important features in Kotlin, which allow checking and casting objects to different types. They are useful when working with objects of different types and performing operations that require a specific type. Now let's move on to practice to better remember this topic.</p>

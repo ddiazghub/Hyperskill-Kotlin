@@ -1,0 +1,146 @@
+<h5 id="description">Description</h5>
+<p>In the final stage, we will lift the image requirements of sharing the dimensions! But for simplicity, limit the watermark image — it must be smaller or equal to the original image. The error message for different dimensions of two images isn't valid anymore, so a new one will be used, in case a dimension of the watermark image is larger than the original image dimension.</p>
+<p>In this stage, we will put a <strong>single</strong> watermark logo or several as a <strong>grid</strong>. Take a look at some examples:</p>
+<div style="text-align: center;">
+<figure class="image" style=""><img alt="" height="332" name="example1.png" src="https://ucarecdn.com/e8911b7d-b43a-4995-a201-cbc4c13056e1/" width="759"/>
+<figcaption>Top-left, Top-right and bottom-left</figcaption>
+</figure>
+</div>
+<div style="text-align: center;">
+<figure class="image" style=""><img alt="" height="332" name="example2.png" src="https://ucarecdn.com/ff0445d2-56b3-4920-8b2a-ffa240cac0b4/" width="759"/>
+<figcaption>Bottom-right, in the middle and grid</figcaption>
+</figure>
+</div>
+<p>If users want to place a single watermark, ask for its position. The position is denoted by two integer numbers (<code class="java">X</code> for horizontal and <code class="java">Y</code> for vertical) that are the number of pixels from the top-left corner. <code class="java">(0,0)</code> is the initial position (see the Figure below). <code class="java">X</code> is a value from <code class="java">0</code> to <code class="java">&lt;Image width - Watermark width&gt;</code>, and <code class="java">Y</code> is a value from <code class="java">0</code> to <code class="java">&lt;Image height - Watermark height&gt;</code>:</p>
+<p style="text-align: center;"><img alt="" height="389" name="position.png" src="https://ucarecdn.com/a72ebc46-d00b-4ec4-8268-ff27851042f8/" width="557"/></p>
+<p>The watermark pixels should be blended with the image pixels as in the previous stage. All other image pixels remain the same.</p>
+<p>You may want to position the watermark as a grid. In this case, the watermark should be initially set at the top-left corner. Then repeat the watermark towards the right corner and the bottom until all space is covered.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Compare the dimensions of the two images. If the watermark image has at least one dimension larger than the dimension of the original image, print <code class="java">The watermark's dimensions are larger.</code> and terminate the program (Example 8);</li>
+<li>Before asking users for the output image filename, ask for the position method with <code class="java">Choose the position method (single, grid):</code>, and read the user input. If this input isn't <code class="java">single</code> or <code class="java">grid</code>, print <code class="java">The position method input is invalid.</code> and terminate the program (Example 5);</li>
+<li>If the user input is <code class="java">single</code>, then print <code class="java">Input the watermark position ([x 0-DiffX] [y 0-DiffY]):</code>, where <code class="java">DiffX</code> is an integer equal to the subtraction <code class="java">&lt;Image width - Watermark width&gt;</code>, and <code class="java">DiffY</code> is an integer equal to the subtraction<code class="java">&lt;Image height - Watermark height&gt;</code> (Examples 1 and 2). The position is two integers in the given range, separated by one space;</li>
+<li>If the position input is correct, create the output image as described in the Description section (Examples 1 and 2);</li>
+<li>If the position input isn't valid, print <code class="java">The position input is invalid.</code> and terminate the program (Example 6);</li>
+<li>If the input integers are out of range, print <code class="java">The position input is out of range.</code> and terminate the program (Example 7);</li>
+<li>If the user input is <code class="java">grid</code>, create the output image as described in the Description section (Examples 3 and 4).</li>
+</ul>
+<p>If you need some image files to experiment with your code for stage 5, then you can <a href="https://stepik.org/media/attachments/lesson/623865/stage5.zip" rel="noopener noreferrer nofollow" target="_blank">download this zip file</a>.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>a single watermark (image 500x700, watermark 150x150)</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 255 255 255
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; single
+Input the watermark position ([x 0-350] [y 0-550]):
+&gt; 100 100
+Input the output image filename (jpg or png extension):
+&gt; out.jpg
+The watermarked image out.jpg has been created.</code></pre>
+<p><strong>Example 2:</strong> <em>a single watermark with the alpha channel (image 500x700, watermark 150x150)</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to use the watermark's Alpha channel?
+&gt; yes
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; single
+Input the watermark position ([x 0-350] [y 0-550]):
+&gt; 100 100
+Input the output image filename (jpg or png extension):
+&gt; out.jpg
+The watermarked image out.jpg has been created.</code></pre>
+<p><strong>Example 3:</strong> <em>grid watermarks</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 255 255 255
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; grid
+Input the output image filename (jpg or png extension):
+&gt; out.png
+The watermarked image out.png has been created.</code></pre>
+<p><strong>Example 4:</strong> <em>grid watermarks with the alpha channel</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to use the watermark's Alpha channel?
+&gt; yes
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; grid
+Input the output image filename (jpg or png extension):
+&gt; out.png
+The watermarked image out.png has been created.</code></pre>
+<p><strong>Example 5:</strong> <em>invalid position method</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 255 255 255
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; pos
+The position method input is invalid.</code></pre>
+<p><strong>Example 6:</strong> <em>invalid position input (image 500x700, watermark 150x150)</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 255 255 255
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; single
+Input the watermark position ([x 0-350] [y 0-550]):
+&gt; top right
+The position input is invalid.</code></pre>
+<p><strong>Example 7:</strong> <em>position is o</em><em>ut of range (image 500x700, watermark 150x150)</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 255 255 255
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Choose the position method (single, grid):
+&gt; single
+Input the watermark position ([x 0-350] [y 0-550]):
+&gt; 500 0
+The position input is out of range.</code></pre>
+<p><strong>Example 8:</strong> <em>dimensions are larger</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+The watermark's dimensions are larger.</code></pre>

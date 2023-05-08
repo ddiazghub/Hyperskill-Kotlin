@@ -1,0 +1,72 @@
+<h5 id="description">Description</h5>
+<p>If a watermark image doesn't use the alpha channel, we can treat a specific color as a transparent one. For example, if a watermark image logo has a white background, the white color can be handled as transparent. If watermark logo pixels are of the same color as its background, treat them as transparent.</p>
+<p>If your watermark image doesn't have the alpha channel, you will be prompted to choose a specific color as transparency.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>If a watermark image has the alpha channel, proceed as in the previous stage (Examples 2 and 3);</li>
+<li>Otherwise, before asking users for the watermark transparency percentage, output <code class="java">Do you want to set a transparency color?</code>. If the user inputs anything else than <code class="java">yes</code>, proceed without the use of a transparency color (Example 4);</li>
+<li>If the input is <code class="java">yes</code>, ask for the transparency color with <code class="java">Input a transparency color ([Red] [Green] [Blue]):</code>. After this, users should input 3 integer numbers, each within the <code class="java">0</code> to <code class="java">255</code> range, separated by space(Example 1). These are the values for the red, green, and blue colors, respectively. Any pixels in the watermark image with this color, should be treated as transparent. In case the input isn't correct, print <code class="java">The transparency color input is invalid.</code> and terminate the program (Example 5).</li>
+</ul>
+<p>If you need some image files to experiment with your code for stage 4, then you can <a href="https://stepik.org/media/attachments/lesson/623865/stage4.zip" rel="noopener noreferrer nofollow" target="_blank">download this zip file</a>.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>the watermark image doesn't employ the alpha channel</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; logo.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 255 255 255
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; out.jpg
+The watermarked image out.jpg has been created.</code></pre>
+<p><strong>Example 2:</strong> <em>the watermark image uses the alpha channel</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; logo_with_alpha.png
+Do you want to use the watermark's Alpha channel?
+&gt; yes
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; out.png
+The watermarked image out.png has been created.</code></pre>
+<p><strong>Example 3:</strong> <em>the watermark image has the alpha channel, but the user doesn't want to use it</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; logo.png
+Do you want to set a transparency color?
+&gt; no
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; out.jpg
+The watermarked image out.jpg has been created.</code></pre>
+<p><strong>Example 4:</strong> <em>the watermark image doesn't have the alpha channel; the user doesn't use a transparency color</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; logo.png
+Do you want to set a transparency color?
+&gt; no
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; out.jpg
+The watermarked image out.jpg has been created.</code></pre>
+<p><strong>Example 5:</strong> <em>invalid transparency color</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; image.jpg
+Input the watermark image filename:
+&gt; watermark.jpg
+Do you want to set a transparency color?
+&gt; yes
+Input a transparency color ([Red] [Green] [Blue]):
+&gt; 34 45
+The transparency color input is invalid.</code></pre>

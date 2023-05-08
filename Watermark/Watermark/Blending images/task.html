@@ -1,0 +1,134 @@
+<h5 id="description">Description</h5>
+<p>In this stage, we will start blending images. To keep things simple, we will be dealing with transparency in this stage. Two images should have the same dimensions. Also, all images in this project must be either 24-bit or 32-bit.</p>
+<p>Generally, the procedure of blending two identically sized images is very straightforward. Each pixel in an output image has a value that is a <strong>linear combination</strong> of the pixel color values in input images. Pixel color values of input images are weighted as per users' wishes.</p>
+<p>The procedure is as follows:</p>
+<ul>
+<li>Get the<strong> watermark weight percentage</strong> <code class="java">weight</code> from users. Here, we will use only integer operations, so we require this percentage to be an integer number between <code class="java">0</code> to <code class="java">100</code>.</li>
+<li>For each pixel position <code class="java">(x, y)</code> in the input images, read the <code class="java">Color</code> from the watermarked image and the <code class="java">Color</code> from the watermark image. For example:</li>
+</ul>
+<pre><code class="language-no-highlight">val i = Color(image.getRGB(x, y))
+val w = Color(watermark.getRGB(x, y))</code></pre>
+<p>where <code class="java">image</code> and <code class="java">watermark</code> are <code class="java">BufferedImage</code> instances for the two input images.</p>
+<ul>
+<li>Calculate the <code class="java">Color</code> <strong>for the corresponding pixel</strong> of the output image:</li>
+</ul>
+<pre><code class="language-no-highlight">val color = Color(
+                (weight * w.red + (100 - weight) * i.red) / 100,
+                (weight * w.green + (100 - weight) * i.green) / 100,
+                (weight * w.blue + (100 - weight) * i.blue) / 100
+            )</code></pre>
+<ul>
+<li>Set it at the output <code class="java">BufferedImage</code> instance at position <code class="java">(x, y)</code> as <code class="java">output.setRGB(x, y, color.rgb)</code>, where <code class="java">output</code> is a <code class="java">BufferedImage</code> instance.</li>
+</ul>
+<p>Since we don't use transparency in this stage, the result images aren't truly watermarked. They are nothing but two blended images.</p>
+<div style="text-align: center;">
+<figure class="image" style=""><img alt="" height="292" name="plus1.png" src="https://ucarecdn.com/a6ab4fb9-aac9-4c23-8ffd-27507ef3d726/" width="751"/>
+<figcaption>Images blended with 20% watermark transparency percentage</figcaption>
+</figure>
+</div>
+<div style="text-align: center;">
+<figure class="image" style=""><img alt="" height="292" name="plus2.png" src="https://ucarecdn.com/0bc660d5-cba3-423c-9d20-6415ab50fb84/" width="751"/>
+<figcaption>Images blended with 20% watermark transparency percentage</figcaption>
+</figure>
+</div>
+<p>As you can see, the resulting image is affected by the watermark logo background. However, we will work on it in the next stages by introducing transparency in two different ways to achieve true watermarking.</p>
+<p>In this project, it's a good idea to use the <code class="java">exitProcess()</code> function to exit our program at any time. Refer to the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.system/exit-process.html" rel="noopener noreferrer nofollow" target="_blank">Kotlin documentation</a> for more details.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Ask for an image filename with the following message: <code class="java">Input the image filename:</code>. Users should input a filename:</p>
+<ul>
+<li>If the file doesn't exist, print <code class="java">The file [filename] doesn't exist.</code> and terminate the program (Example 2);</li>
+<li>If the image doesn't have 3 color components, print <code class="java">The number of image color components isn't 3.</code> and terminate the program (Example 3);</li>
+<li>If the image isn't 24 or 32-bit, then print <code class="java">The image isn't 24 or 32-bit.</code> and terminate the program (Example 4).</li>
+</ul>
+<p>Ask for a watermark image filename with the message <code class="java">Input the watermark image filename:</code>. Users are expected to input the watermark filename:</p>
+<ul>
+<li>If the watermark file doesn't exist, print <code class="java">The file [watermark filename] doesn't exist.</code> and terminate the program (Example 5);</li>
+<li>If the watermark image doesn't have 3 color components, print <code class="java">The number of watermark color components isn't 3.</code> and terminate the program (Example 6);</li>
+<li>If the watermark image doesn't use a 24-bit or a 32-bit color scheme, then print <code class="java">The watermark isn't 24 or 32-bit.</code> and terminate the program (Example 7);</li>
+<li>Compare the dimensions of two images; if they are different, print <code class="java">The image and watermark dimensions are different.</code> and terminate the program (Example 8).</li>
+</ul>
+<p>Ask for the watermark color weight percentage with the message <code class="java">Input the watermark transparency percentage (Integer 0-100):</code></p>
+<ul>
+<li>If the input isn't an integer number, print <code class="java">The transparency percentage isn't an integer number.</code> and terminate the program (Example 9);</li>
+<li>If the input is an integer number but outside the <code class="java">0-100</code> range, print <code class="java">The transparency percentage is out of range.</code> and terminate the program (Example 10).</li>
+</ul>
+<p>Ask for the output image filename with the message <code class="java">Input the output image filename (jpg or png extension):</code></p>
+<ul>
+<li>If a provided filename doesn't have <code class="java">.jpg</code> or <code class="java">.png</code> extension, print <code class="java">The output file extension isn't "jpg" or "png".</code> and terminate the program (Example 11).</li>
+</ul>
+<p>Create the output image by blending the image and the watermark, save it as the provided output image filename, and then print <code class="java">The watermarked image [output filename] has been created.</code> (Example 1). The blending should be done as described in the Description section. Output images must be saved as <code class="java">BufferedImage.TYPE_INT_RGB</code> — the 24-bit color scheme without the alpha channel.</p>
+<p>If you need some image files to experiment with your code for stage 2, then you can <a href="https://stepik.org/media/attachments/lesson/623865/stage2.zip" rel="noopener noreferrer nofollow" target="_blank">download this zip file</a>.</p>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>normal execution</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; logo.jpg
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; out.png
+The watermarked image out.png has been created.</code></pre>
+<p><strong>Example 2:</strong> <em>the</em> <em>image doesn't exist</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; winter.jpg
+The file winter.jpg doesn't exist.</code></pre>
+<p><strong>Example 3:</strong> <em>the image color components aren't 3</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; greyscale_image.jpg
+The number of image color components isn't 3.</code></pre>
+<p><strong>Example 4:</strong> <em>the image isn't 24-bit or 32-bit</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; 256_colors_image.png
+The image isn't 24 or 32 bit.</code></pre>
+<p><strong>Example 5:</strong> <em>the watermark image doesn't exist</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; nologo.jpg
+The file nologo.jpg doesn't exist.</code></pre>
+<p><strong>Example 6:</strong> <em>the watermark image color components aren't 3</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; greyscale_logo.jpg
+The number of watermark color components isn't 3.</code></pre>
+<p><strong>Example 7:</strong> <em>The watermark image doesn't use a 24-bit or 32-bit color scheme</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; 256_colors_logo.png
+The watermark isn't 24 or 32-bit.</code></pre>
+<p><strong>Example 8:</strong> <em>different dimensions</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; some_logo.png
+The image and watermark dimensions are different.</code></pre>
+<p><strong>Example 9:</strong> <em>the transparency percentage isn't an integer number</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; logo.jpg
+Input the watermark transparency percentage (Integer 0-100):
+&gt; ten
+The transparency percentage isn't an integer number.</code></pre>
+<p><strong>Example 10:</strong> <em>the transparency percentage is out of range</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; logo.jpg
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 101
+The transparency percentage is out of range.</code></pre>
+<p><strong>Example 11:</strong> <em>wrong output image file extension</em></p>
+<pre><code class="language-no-highlight">Input the image filename:
+&gt; myimage.jpg
+Input the watermark image filename:
+&gt; logo.jpg
+Input the watermark transparency percentage (Integer 0-100):
+&gt; 20
+Input the output image filename (jpg or png extension):
+&gt; out.gif
+The output file extension isn't "jpg" or "png".</code></pre>

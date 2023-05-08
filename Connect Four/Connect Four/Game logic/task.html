@@ -1,0 +1,302 @@
+<h5 id="description">Description</h5>
+<p>Players use red and yellow colored discs in the "hardware" version of the game. In this project, we are going to substitute them with <code class="java">o</code> and <code class="java">*</code> characters. The <code class="java">o</code> is for the first player.</p>
+<p>Each player inputs a column number one after another. The program must read the input and print the appropriate character ( <code class="java">o</code> or <code class="java">*</code>) on the first available position at the bottom of that column. If the user input isn't correct, print the appropriate message and ask for a new one (see Examples). The program should also check whether a column is full or not. If it is, no more discs can be added to it.</p>
+<p>If players input <code class="java">end</code> instead of a column number, terminate the program and print the respective message.</p>
+<h5 id="objectives">Objectives</h5>
+<p>In addition to the functionality from the previous stage, your game should perform the following:</p>
+<ol>
+<li> Ask each player to input a column number by prompting <code class="java">&lt;First player's name&gt;'s turn:</code> or <code class="java">&lt;Second player's name&gt;'s turn:</code>. Read the column number and print <code class="java">o</code> or <code class="java">*</code> on the first available position of that column. The first player is <code class="java">o</code>; the second player is <code class="java">*</code>. If either player inputs <code class="java">end</code>, terminate the program and print <code class="java">Game over!</code> (see Example 1).</li>
+<li>If the input contains an integer number outside the scope of available columns, warn the players with the <code class="java">The column number is out of range (1 - &lt;Max column number&gt;)</code> message and ask for it once again. If players' input doesn't contain an integer, warn the players with <code class="java">Incorrect column number</code> and ask for it once again (see Example 2).</li>
+<li>If the column is full, print the following message <code class="java">Column &lt;Column number&gt; is full</code> and ask to input another column number (see Example 2).</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>normal execution</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Mia
+Second player's name:
+&gt; Bill
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 6x8
+Mia VS Bill
+6 X 8 board
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 4
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ο║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 4
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║ο║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 5
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║ο║ο║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 4
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║ο║ο║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 7
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║ο║ο║ ║ο║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 8
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║ο║ο║ ║ο║*║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 8
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ο║
+║ ║ ║ ║ο║ο║ ║ο║*║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ ║
+║ ║ ║ ║*║ ║ ║ ║ο║
+║*║ ║ ║ο║ο║ ║ο║*║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; end
+Game over!</code></pre>
+<p><strong>Example 2: </strong><em>warning messages</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Mia
+Second player's name:
+&gt; Bill
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 7 x 8
+Mia VS Bill
+7 X 8 board
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 0
+The column number is out of range (1 - 8)
+Mia's turn:
+&gt; 9
+The column number is out of range (1 - 8)
+Mia's turn:
+&gt; a12
+Incorrect column number
+Mia's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Mia's turn:
+&gt; 1
+ 1 2 3 4 5 6 7 8
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+║*║ ║ ║ ║ ║ ║ ║ ║
+║ο║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝
+Bill's turn:
+&gt; 1
+Column 1 is full
+Bill's turn:
+&gt; end
+Game over!</code></pre>
+<p><strong>Example 3: </strong><em>plain text example</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Mia
+Second player's name:
+&gt; Bill
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 5x7
+Mia VS Bill
+5 X 7 board
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+===============
+Mia's turn:
+&gt; 2
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| |o| | | | | |
+===============
+Bill's turn:
+&gt; 3
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| |o|*| | | | |
+===============
+Mia's turn:
+&gt; 2
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| |o| | | | | |
+| |o|*| | | | |
+===============
+Bill's turn:
+&gt; 2
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| |*| | | | | |
+| |o| | | | | |
+| |o|*| | | | |
+===============
+Mia's turn:
+&gt; 1
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| |*| | | | | |
+| |o| | | | | |
+|o|o|*| | | | |
+===============
+Bill's turn:
+&gt; 4
+ 1 2 3 4 5 6 7
+| | | | | | | |
+| | | | | | | |
+| |*| | | | | |
+| |o| | | | | |
+|o|o|*|*| | | |
+===============
+Mia's turn:
+&gt; end
+Game over!</code></pre>

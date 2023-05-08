@@ -1,0 +1,76 @@
+<h5 id="description">Description</h5>
+<p>In this stage, let's add some colors to the clue strings.</p>
+<p>Change the structure of the clue string  now, they should be in upper case, with different background color for each letter. These colors are:</p>
+<ul>
+<li><span style="color: #66cc66;"><strong>Green</strong></span> if the letter in the guess word occurs at the same position as in the secret word.</li>
+<li><span style="color: #8b8000;"><strong>Yellow</strong></span> if the letter occurs but in some other position.</li>
+<li><span style="color: #808080.;"><strong>Grey</strong></span> in any other case.</li>
+</ul>
+<p>For example:</p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<thead>
+<tr>
+<th>Secret word</th>
+<th>Guess word</th>
+<th>Clue string</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="java">spare</code></td>
+<td><code class="java">steak</code></td>
+<td><img alt="" height="32" name="image.png" src="https://ucarecdn.com/e6af7c17-ddeb-4477-840e-536c76ccb771/" width="55"/></td>
+</tr>
+<tr>
+<td><code class="java">clone</code></td>
+<td><code class="java">cloth</code></td>
+<td><img alt="" height="32" name="image.png" src="https://ucarecdn.com/2267af97-93af-4a70-aa76-0a90f07eb7c5/" width="58"/></td>
+</tr>
+<tr>
+<td><code class="java">snack</code></td>
+<td><code class="java">daisy</code></td>
+<td><img alt="" height="34" name="image.png" src="https://ucarecdn.com/c9efa64b-a46d-4fc7-a3bc-88d0f8d44a1e/" width="59"/></td>
+</tr>
+<tr>
+<td><code class="java">liner</code></td>
+<td><code class="java">datum</code></td>
+<td><img alt="" height="33" name="image.png" src="https://ucarecdn.com/429944ac-b5c5-4dab-8591-2439469b15dd/" width="62"/></td>
+</tr>
+</tbody>
+</table>
+<p>For setting the letter background colors, use the <strong>8-bit ANSI colors </strong>(256 coloring scheme). More specifically, the color sequences are:</p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<thead>
+<tr>
+<th>Color</th>
+<th>Sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Green</td>
+<td><code class="java">"\u001B[48:5:10m&lt;letter&gt;\u001B[0m"</code></td>
+</tr>
+<tr>
+<td>Yellow</td>
+<td><code class="java">"\u001B[48:5:11m&lt;letter&gt;\u001B[0m"</code></td>
+</tr>
+<tr>
+<td>Grey</td>
+<td><code class="java">"\u001B[48:5:7m&lt;letter&gt;\u001B[0m"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Where <code class="java">&lt;letter&gt;</code> is the letter the background color of which we want to change. The clue word letters should be <strong>individually</strong> <strong>colored</strong>.</p>
+<p>The wrong letter printouts will have an azure color background — <img alt="" height="29" name="image.png" src="https://ucarecdn.com/e9475b1b-568c-46bf-9c53-5cc6ba53d4a3/" width="59"/></p>
+<p>For this, use <code class="java">"\u001B[48:5:14m&lt;wrong letters&gt;\u001B[0m"</code> , where <code class="java">&lt;wrong letters&gt;</code> is the wrong letters' list. The wrong letters should be <strong>group colored</strong>.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Implement the coloring scheme as defined in the Description. Each</p>
+<h5 id="examples">Examples</h5>
+<p><em>The following examples are images, so the output print color is evident. The user input is the text with in green.</em></p>
+<p><strong>Example 1:</strong> <em>normal execution</em></p>
+<p><img alt="" height="685" name="image.png" src="https://ucarecdn.com/74d00a16-cb02-4718-8d2c-40e8af4d04c3/" width="509"/></p>
+<p><strong>Example 2:</strong> <em>normal execution</em> </p>
+<p><img alt="" height="680" name="image.png" src="https://ucarecdn.com/d554dbc5-cbc7-4313-a139-732a8424da35/" width="505"/></p>
+<p><strong>Example 3:</strong> <em>secret word found on the first try</em></p>
+<p><img alt="" height="239" name="image.png" src="https://ucarecdn.com/a5249e0c-1fbb-4443-b34c-af60d4cc8e7d/" width="452"/></p>

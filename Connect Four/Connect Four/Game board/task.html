@@ -1,0 +1,75 @@
+<h5 id="description">Description</h5>
+<p>In this stage, you need to draw the game board by using the <code class="java">║, ╚, ═, ╩, ╝</code> box-drawing characters. You can find more information about these characters in the corresponding <a href="https://en.wikipedia.org/wiki/Box-drawing_character" rel="noopener noreferrer nofollow" target="_blank">Wikipedia article</a>, but you can also simply copy them.</p>
+<p>Construct a board in the manner shown in the following example for a 7x8 board:</p>
+<p style="text-align: center;"><img alt="" src="https://ucarecdn.com/a76f927a-b0a0-43cc-b6f8-dbaa2ede4106/"/></p>
+<p>Print the column number above each respective column and use the above-mentioned box-drawing characters for creating the board lines. You can find more board types in the Examples section.</p>
+<p>There is the possibility, due to a known issue, that the <code class="java">║, ╚, ═, ╩, ╝</code> box-drawing characters can't be correctly printed at the console output. Instead the <code class="java">?</code> character is printed for each of them. If this situation arises, then implement the board by using the plain text <code class="java">|</code> and <code class="java">=</code> plain text characters as following. Either case will be accepted as a valid solution. Also, a plain text board example is available at each stage.</p>
+<p style="text-align: center;"><img alt="" height="178" name="board2.png" src="https://ucarecdn.com/1ec9b3a8-f9d5-4623-a068-190f406ac808/" width="160"/></p>
+<p>The board size can vary, so your program should adapt to any possible size.</p>
+<h5 id="objectives">Objectives</h5>
+<ol>
+<li>Draw and print the board set by users according to the procedure above;</li>
+<li>Print the column numbers on the board. Mind the spaces between characters.</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1: </strong><em>printing the board</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Sophia
+Second player's name:
+&gt; John
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 8 x 8
+Sophia VS John
+8 X 8 board
+ 1 2 3 4 5 6 7 8
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╩═╝</code></pre>
+<p><strong>Example 2: </strong><em>the default size board</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Sophia
+Second player's name:
+&gt; John
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt;
+Sophia VS John
+6 X 7 board
+ 1 2 3 4 5 6 7
+║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║
+║ ║ ║ ║ ║ ║ ║ ║
+╚═╩═╩═╩═╩═╩═╩═╝</code></pre>
+<p> <strong>Example 3: </strong><em>plain text board</em></p>
+<pre><code class="language-no-highlight">Connect Four
+First player's name:
+&gt; Sophia
+Second player's name:
+&gt; John
+Set the board dimensions (Rows x Columns)
+Press Enter for default (6 x 7)
+&gt; 7 x 8
+Sophia VS John
+7 X 8 board
+ 1 2 3 4 5 6 7 8
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+=================</code></pre>

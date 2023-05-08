@@ -1,0 +1,44 @@
+<h2>Mutable Set</h2>
+<p>In previous topics, you got familiar with <code class="language-kotlin">Set</code> and how it differs from <code class="language-kotlin">MutableList</code>. Now, we will take a look at <code class="language-kotlin">MutableSet</code>: when and how it is used and how exactly it differs from <code class="language-kotlin">Set</code> and <code class="language-kotlin">MutableList</code>.</p><h5 id="introduction">Introduction</h5><p><code class="language-kotlin">MutableSet</code> is an <strong>unordered</strong> collection of elements that does not allow duplicates. Unlike <code class="language-kotlin">Set</code> which is an <strong>immutable</strong> collection, <code class="language-kotlin">MutableSet</code> is <strong>mutable</strong> or modifiable: you can freely add and remove elements.</p><p>Imagine you're making a list of groceries you need to buy:</p><pre><code class="language-kotlin">val groceries = setOf("Banana", "Strawberry")
+println(groceries) // [Banana, Strawberry]</code></pre><p>But what if you remembered something later and need to add more elements? This is exactly the kind of situation where <code class="language-kotlin">MutableSet</code> is useful. <code class="language-kotlin">MutableSet</code> supports the addition of elements:</p><pre><code class="language-kotlin">val groceries = mutableSetOf("Banana", "Strawberry")
+groceries.add("Water")
+println(groceries) // [Banana, Strawberry, Water]</code></pre><p>You might ask: why not just use a <code class="language-kotlin">MutableList</code>? The <code class="language-kotlin">MutableList</code> unlike <code class="language-kotlin">MutableSet</code> allows you to have duplicates:</p><pre><code class="language-kotlin">val groceries = mutableSetOf("Banana", "Banana", "Strawberry")
+println(groceries) // [Banana, Strawberry]
+
+val secondGroceries = mutableListOf("Banana", "Banana", "Strawberry")
+println(secondGroceries) // [Banana, Banana, Strawberry]</code></pre><h5 id="creating-a-mutableset">Creating a MutableSet</h5><p>You can initialize <code class="language-kotlin">MutableSet</code> the following way:</p><pre><code class="language-kotlin">val students = mutableSetOf("Joe", "Elena", "Bob")
+println(students) // [Joe, Elena, Bob]</code></pre><p>Here, we didn't even need to specify the type for our objects because it can be derived from the context. However, note that if you create an empty <code class="language-kotlin">MutableSet</code>, you do have to specify the type:</p><pre><code class="language-kotlin">val points = mutableSetOf&lt;Int&gt;()
+println(points) // []</code></pre><p>You can also transform <code class="language-kotlin">Set</code> into a <code class="language-kotlin">MutableSet</code> with the help of the function <code class="language-kotlin">toMutableSet()</code>:</p><pre><code class="language-kotlin">val students = setOf("Joe", "Elena", "Bob").toMutableSet()
+students.add("Bob")
+println(students) // [Joe, Elena, Bob]</code></pre><h5 id="adding-elements">Adding elements</h5><p><code class="language-kotlin">MutableSet</code> has the same properties and methods as <code class="language-kotlin">Set</code>: <code class="language-kotlin">size</code>, <code class="language-kotlin">isEmpty()</code>, <code class="language-kotlin">indexOf(element)</code>, <code class="language-kotlin">contains(element)</code>, <code class="language-kotlin">first()</code>, <code class="language-kotlin">last()</code>, and so on.</p><p>Also, <code class="language-kotlin">MutableSet</code> offers additional functionality for changing the contents:</p><ul><li><p><code class="language-kotlin">add(element)</code> is a method that adds the specified element to the set;</p></li><li><p><code class="language-kotlin">addAll(elements)</code> adds all the elements of the specified collection to the set.</p></li></ul><p>Let's take a look at an example. Imagine that you're working in a pair with your colleague, and your task is writing down the recorded words quickly and correctly. You decide to transcribe together and then combine the results, and here is how it goes:</p><pre><code class="language-kotlin">val words = mutableSetOf&lt;String&gt;("Apple", "Coke")
+val friendsWords = mutableSetOf&lt;String&gt;("Banana", "Coke")
+
+words.add("Phone")
+words.add("Controller")
+
+friendsWords.add("Phone")
+friendsWords.add("Pasta")
+friendsWords.add("Pizza")
+
+words.addAll(friendsWords)
+
+println(words) // [Apple, Coke, Phone, Controller, Banana, Pasta, Pizza]</code></pre><h5 id="removing-elements">Removing elements</h5><p>You might also need to remove some or all of the elements from your set. Let's see how this can be done.</p><ul><li><p><code class="language-kotlin">remove(element)</code> removes the specified element;</p></li><li><p><code class="language-kotlin">clear()</code> removes all the elements from the current collection;</p></li><li><p><code class="language-kotlin">removeAll(elements)</code> removes all the elements that are also contained in the specified collection (see the example below).</p></li></ul><pre><code class="language-kotlin">val groceries = mutableSetOf("Apple", "Water", "Banana", "Pen")
+
+groceries.remove("Apple")
+println(groceries) // [Water, Banana, Pen]
+
+val uselessGroceries = setOf("Banana", "Pen")
+groceries.removeAll(uselessGroceries)
+println(groceries) // [Water]
+
+groceries.clear()
+println(groceries) // []</code></pre><p>Of course, there are many other useful <code class="language-kotlin">MutableSet</code> methods: check out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/" rel="noopener noreferrer nofollow" target="_blank">kotlinlang.org</a> and get familiar with them!</p><h5 id="iterating-through-elements">Iterating through elements</h5><p>You can iterate through the elements of a <code class="language-kotlin">MutableSet</code> with the help of the <code class="language-kotlin">for</code> loop. Here is a simple example:</p><pre><code class="language-kotlin">val places = mutableSetOf("Saint-Petersburg", "Moscow", "Grodno", "Rome")
+
+for (place in places) {
+    println(place)
+}
+
+// Saint-Petersburg
+// Moscow
+// Grodno
+// Rome</code></pre><h5 id="conclusion">Conclusion</h5><p>Now you know the difference between a <code class="language-kotlin">Set</code> and a <code class="language-kotlin">MutableSet</code>. <code class="language-kotlin">Set</code> is an <strong>immutable</strong> collection, so it makes sense to use it when you don't want the contents to change. If you do, then <code class="language-kotlin">MutableSet</code> is a better choice, and now you know how to initialize it, add and remove elements, and iterate through them. Note that you can also solve problems in this topic with immutable sets if you're an avid programmer, but while we're just learning, use mutable sets.</p>

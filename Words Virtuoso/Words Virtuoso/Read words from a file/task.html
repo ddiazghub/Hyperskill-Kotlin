@@ -1,0 +1,24 @@
+<h5 id="description">Description</h5>
+<p>There is only one solution to check whether a string is an actual English word— use a dictionary.</p>
+<p>In this stage, your program will read a text file with English words, one in each line. Check every word as in the previous stage. It should be a five-letter word, consisting of <code class="java">A</code> to <code class="java">Z</code> characters, only unique letters. All words are considered <strong>case-insensitive</strong>.</p>
+<p>For testing purposes, you can use the <a href="https://stepik.org/media/attachments/lesson/720509/words.txt" rel="noopener noreferrer nofollow" target="_blank">words.txt</a> file, which includes almost all valid words, and the <a href="https://stepik.org/media/attachments/lesson/720509/invalidWords.txt" rel="noopener noreferrer nofollow" target="_blank">invalidWords.txt</a> file which contains some invalid words.</p>
+<h5 id="objectives">Objectives</h5>
+<ul>
+<li>Output the following line: <code class="java">Input the words file:</code> to ask users to input a filename of a file with words. If the file doesn't exist, print <code class="java">Error: The words file &lt;filename&gt; doesn't exist.</code> and terminate the program. The <code class="java">&lt;filename&gt;</code> is the filename user input. One way to terminate a program is to use the <code class="java">kotlin.system exitProcess()</code> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.system/exit-process.html" rel="noopener noreferrer nofollow" target="_blank">function</a>;</li>
+<li>Check whether every line of the file satisfies the required rules. If all words are valid, print <code class="java">All words are valid!</code> otherwise, print <code class="java">Warning: &lt;number of invalid words&gt; invalid words were found in the &lt;filename&gt; file.</code>, where <code class="java">&lt;number of invalid words&gt;</code> are the total number of words that don't comply with our word rules;</li>
+<li>Terminate the program</li>
+</ul>
+<h5 id="examples">Examples</h5>
+<p>The greater-than symbol followed by a space (<code class="java">&gt; </code>) represents the user input. Note that it's not part of the input.</p>
+<p><strong>Example 1:</strong> <em>all words are correct</em></p>
+<pre><code class="language-no-highlight">Input the words file:
+&gt; words.txt
+All words are valid!</code></pre>
+<p><strong>Example 2:</strong> <em>invalid words in the file</em></p>
+<pre><code class="language-no-highlight">Input the words file:
+&gt; invalidwords.txt
+Warning: 5 invalid words were found in the invalidwords.txt file.</code></pre>
+<p><strong>Example 3:</strong> <em>file doesn't exist</em></p>
+<pre><code class="language-no-highlight">Input the words file:
+&gt; filenoexist.txt
+Error: The words file filenoexist.txt doesn't exist.</code></pre>
